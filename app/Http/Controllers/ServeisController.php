@@ -19,7 +19,6 @@ class ServeisController extends Controller
      */
     public function index()
     {
-      //$serveis_zones = ServeisZones::all();
       $assignacions = DB::table('zones')->where('id_estat',2)
       ->join ('serveis_zones','serveis_zones.id_zona', '=', 'zones.id')
       ->join('users', 'serveis_zones.id_empleat', '=', 'users.id')

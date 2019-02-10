@@ -48,3 +48,18 @@
 
  /* RUTES GRUP 2 */
  Route::resource('/gestio/atraccions', 'AtraccionsController')->middleware(['auth','is_admin','verified']);
+
+ Route::get('/gestio/atraccions/image', 'AtraccionsController@store')->name('image.upload')->middleware(['auth','is_admin','verified']);
+ Route::post('/gestio/atraccions/image', 'AtraccionsController@store')->name('image.upload.post')->middleware(['auth','is_admin','verified']);
+
+ Route::resource('/gestio/clients', 'ClientsController')->middleware(['auth','is_admin','verified']);
+ 
+ /* A SABER */
+ Route::get('/view/vustesoarc/atraccions', 'AtraccionsController@index');
+
+ /* Guardar PDF */
+ Route::get('/view/atraccions/index', 'AtraccionsController@guardarPDF');
+
+ /* gestio imatges */
+ Route::get("/gestio/imatges", "ImageController@create")->middleware(['auth','is_admin','verified']);
+ Route::post("/gestio/imatges/save", "ImageController@save")->name('image.save')->middleware(['auth','is_admin','verified']);

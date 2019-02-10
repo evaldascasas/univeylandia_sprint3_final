@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'ciutat' => $faker->city,
                 'provincia' => $faker->state,
                 'codi_postal' => $faker->postcode,
-                'tipus_document' => $faker->numberBetween(1,3),
+                'tipus_document' => 'DNI',
                 'numero_document' => '-',
                 'sexe' => $faker->title,
                 'telefon' => $faker->phoneNumber,

@@ -161,6 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        /* IMATGES */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -223,6 +225,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /* IMAGTES + PDF */
+        'Image' => Intervention\Image\Facades\Image::class,
+        'providers' => [
+            Barryvdh\DomPDF\ServiceProvider::class,
+        ],
+        'aliases' => [
+            'PDF' => Barryvdh\DomPDF\Facade::class,
+        ],
 
     ],
 

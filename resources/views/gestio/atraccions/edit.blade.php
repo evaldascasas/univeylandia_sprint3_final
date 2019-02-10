@@ -22,13 +22,19 @@
       </div><br />
     @endif
 
-      <form method="post" action="{{ route('atraccions.update', $atraccio->id) }}">
+      <form method="post" action="{{ route('atraccions.update', $atraccio->id) }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="form-group">
           <label for="name">Nom:</label>
-          <input type="text" class="form-control" name="nom" value={{ $atraccio->nom_atraccio }} />
+          <input type="text" class="form-control" name="nom" value="{{ $atraccio->nom_atraccio }}" />
         </div>
+
+        <div class="form-group">
+          <label for="name">Descripcion:</label>
+          <textarea name="descripcio"></textarea>
+        </div>
+
         <div class="form-group">
           <label for="price">Altura minima :</label>
         </div>
@@ -97,14 +103,13 @@
               <label>Imatge</label>
               @endif
               <input type="file" name="image" class="form-control">
-          </div>
+        </div>
 
 
         <button type="submit" class="btn btn-primary">Modificar</button>
         <a href="{{ url()->previous() }}" class="btn btn-primary">Cancel·lar</a>
-
+      
 </form>
   </div>
 </div>
-
 @endsection

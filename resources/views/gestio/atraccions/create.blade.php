@@ -27,12 +27,7 @@
               <label for="nom">Nom de l'atracció</label>
               <input type="text" class="form-control form-control-sm" placeholder="Nom" name="nom" required>
             </div>
-            <div class="col-md-3 mb-3">
-              <div class="form-group">
-                <label for="descripcio">Descripció</label>
-                <textarea class="form-control form-control-sm" style="resize:none" name="descripcio" rows="1" required></textarea>
-              </div>
-            </div>
+            
             <div class="col-md-3 mb-3">
               <label for="alturamin">Altura mínima</label>
               <input type="text" class="form-control form-control-sm" name="alturamin" required>
@@ -41,7 +36,13 @@
               <label for="alturamax">Altura màxima</label>
               <input type="text" class="form-control form-control-sm" name="alturamax" required>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-12 mb-12">
+              <div class="form-group">
+                <label for="descripcio">Descripció</label>
+                <textarea class="form-control form-control-sm" name="descripcio"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12 mb-12">
               <label for="datainauguracio">Data d'innauguració</label>
               <input type="date" class="form-control form-control-sm" name="datainauguracio" required>
             </div>
@@ -77,7 +78,7 @@
             </div>
             <div class="form-group">
             <input type="file" name="image" class="form-control form-control-sm">
-        </div>
+        </div>  
           </div>
             <button class="btn btn-primary" type="submit">Crear</button>
           <button class="btn btn-secondary" type="reset">Cancel·lar</button>

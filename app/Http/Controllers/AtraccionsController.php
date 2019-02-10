@@ -8,7 +8,11 @@ use \App\TipusAtraccions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Http\File;
+use Illuminate\Support\Facades\File;
+use Image;
+use PDF;
+use Carbon;
+
 
 class AtraccionsController extends Controller
 {
@@ -32,7 +36,8 @@ class AtraccionsController extends Controller
               'atraccions.accessibilitat',
               'atraccions.acces_express',
               'atraccions.id',
-              'atraccions.path'
+              'atraccions.path',
+              'atraccions.descripcio'
 
             ]);
 
@@ -72,7 +77,8 @@ class AtraccionsController extends Controller
         $file = $request->file('image');
         $file_name = time() . $file->getClientOriginalName();
         $file_path = 'storage/atraccions';
-        $file->move($file_path, $file_name);
+        $img = Image::make($file->getRealPath())->resize(800, 600)
+        ->save($file_path."/".$file_name);
         
         $atraccio = new Atraccion([
             'nom_atraccio' => $request->get('nom'),
@@ -83,7 +89,7 @@ class AtraccionsController extends Controller
             'accessibilitat' => $request->get('accessible'),
             'acces_express' => $request->get('accesexpress'),
             'descripcio' => $request->get('descripcio'),
-            'path' => "/".$file_path."/".$file_name
+            'path' => "/".$file_path."/".$file_name,
         ]);
 
         $atraccio->save();
@@ -135,20 +141,29 @@ class AtraccionsController extends Controller
         $atraccio->altura_max = $request->get('alturamax');
         $atraccio->accessibilitat = $request->get('accessible');
         $atraccio->acces_express = $request->get('accesexpress');
+        
+        if ($request->has('image')) {
+            $image_path = public_path().$atraccio->path;
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+            }
+        
 
-
+            $file = $request->file('image');
+            $file_name = time() . $file->getClientOriginalName();
+            $file_path = 'storage/atraccions';
+            $img = Image::make($file->getRealPath())->resize(800, 600)
+            ->save($file_path."/".$file_name);    
+            
+            $atraccio->path = "/".$file_path."/".$file_name;
+        }
+            $atraccio->save();
 //$path=Storage::put($imageName, $laruka2);
 //request()->image->move(public_path('images'), $imageName);
 
         
 
         return redirect('/gestio/atraccions')->with('success', 'atraccio modificada');
-
-
-
-
-        
-
         
     }
 
@@ -163,6 +178,36 @@ class AtraccionsController extends Controller
         $atraccio = Atraccion::find($id);
         $atraccio->delete();
         return redirect('/gestio/atraccions')->with('success', 'atraccio suprimida correctament');
+
+    }
+
+
+    public function guardarPDF()
+    {
+        $atraccionetes = DB::table('tipus_atraccions')
+        ->join('atraccions', 'atraccions.tipus_atraccio', '=', 'tipus_atraccions.id')
+        ->get([
+          'tipus_atraccions.tipus as nom',
+          'tipus_atraccions.id as id_tipus',
+          'atraccions.nom_atraccio',
+          'atraccions.tipus_atraccio',
+          'atraccions.data_inauguracio',
+          'atraccions.altura_min',
+          'atraccions.altura_max',
+          'atraccions.accessibilitat',
+          'atraccions.acces_express',
+          'atraccions.id',
+          'atraccions.path',
+          'atraccions.descripcio'
+
+        ]);
+
+        $mytime = Carbon\Carbon::now();
+        $temps = $mytime->toDateString();
+
+        $atraccions = Atraccion::all();
+        $pdf = PDF::loadView('/gestio/atraccions/pdf', compact('atraccionetes'));
+        return $pdf->download('atraccions'.$temps.'.pdf');
 
     }
  

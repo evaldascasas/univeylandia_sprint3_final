@@ -14,42 +14,18 @@
     </div>
   </div>
   @endif
-
-  <div class="container">
-		<form action="/gestio/atraccions" method="POST" role="search">
-			{{ csrf_field() }}
-			<div class="input-group">
-				<input type="text" class="form-control" name="q"
-					placeholder="Search users"> <span class="input-group-btn">
-					<button type="submit" class="btn btn-default">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>
-				</span>
-			</div>
-		</form>
-		<div class="container">
-			@if(isset($details))
-			<p> The Search results for your query <b> {{ $query }} </b> are :</p>
-			<h2>Sample User details</h2>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Name</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($details as $user)
-					<tr>
-						<td>{{$user->nom_atraccio}}</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-			@elseif(isset($message))
-			<p>{{ $message }}</p>
-			@endif
-		</div>
-
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Llistar les atraccions </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+				  <div class="btn-group mr-2">
+          <form action="{{action('AtraccionsController@guardarPDF')}}">
+					<button class="btn btn-sm btn-outline-secondary">
+					  <span data-feather="save"></span>
+					  Exportar</button>
+				  </div>
+          </form>
+				</div>
+    </div>
 
   <table class="table table-striped">
     <thead>

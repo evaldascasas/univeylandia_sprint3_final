@@ -19,7 +19,7 @@ class IncidenciesController extends Controller
      */
     public function index()
     {
-        $incidencies = DB::table('incidencies')->where('id_estat', 1)
+        $incidencies = DB::table('incidencies')->where('id_estat', 1)->orderBy('id_prioritat', 'DESC')
         ->join('users AS u1','incidencies.id_usuari_reportador','u1.id')
         ->join('tipus_prioritat','incidencies.id_prioritat','tipus_prioritat.id')
         ->join('estat_incidencies','estat_incidencies.id','incidencies.id_estat')
@@ -42,7 +42,7 @@ class IncidenciesController extends Controller
      */
     public function assigned()
     {
-        $incidencies = DB::table('incidencies')->where('id_estat', 2)
+        $incidencies = DB::table('incidencies')->where('id_estat', 2)->orderBy('id_prioritat', 'DESC')
         ->join('users AS u1', 'incidencies.id_usuari_reportador', 'u1.id')
         ->join('users AS u2', 'incidencies.id_usuari_assignat', 'u2.id')
         ->join('tipus_prioritat', 'incidencies.id_prioritat', 'tipus_prioritat.id')

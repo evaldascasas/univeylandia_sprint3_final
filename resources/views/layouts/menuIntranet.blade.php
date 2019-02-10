@@ -30,18 +30,18 @@
 
 
           <li class="nav-item">
-            <a class="nav-link " data-toggle="collapse" aria-expanded="" href="#submenu1">
+            <a class="nav-link {{ request()->routeIs('clients*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('clients*') ? 'true' : 'false' }}" href="#submenu1">
               <span data-feather="users"></span>
               Gestionar Clients
               <span data-feather="chevron-right"></span>
             </a>
           </li>
-          <ul class="nav flex-column collapse " id="submenu1" data-parent="#sidebar">
+          <ul class="nav flex-column collapse {{ request()->routeIs('clients*') ? 'show' : '' }}" id="submenu1" data-parent="#sidebar">
             <li class="nav-item">
-              <a class="nav-link nav-interior " href="#"><span data-feather="user-plus"></span>Crear Client</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('clients.create') ? 'active' : '' }}" href="{{URL::route('clients.create')}}"><span data-feather="user-plus"></span>Crear Client</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-interior " href="#"><span data-feather="file-text"></span>Gestionar Clients</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('clients.index') ? 'active' : '' }}" href="{{URL::route('clients.index')}}"><span data-feather="file-text"></span>Gestionar Clients</a>
             </li>
           </ul>
 

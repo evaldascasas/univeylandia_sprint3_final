@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
 use Auth;
@@ -40,9 +41,26 @@ class HomeController extends Controller
       return view("promocions");
     }
     
-    public function atraccions()
-    {
-      return view("atraccions");
+    public function atraccions(){
+      $atraccionetes = DB::table('tipus_atraccions')
+      ->join('atraccions', 'atraccions.tipus_atraccio', '=', 'tipus_atraccions.id')
+      ->get([
+        'tipus_atraccions.tipus as nom',
+        'tipus_atraccions.id as id_tipus',
+        'atraccions.nom_atraccio',
+        'atraccions.tipus_atraccio',
+        'atraccions.data_inauguracio',
+        'atraccions.altura_min',
+        'atraccions.altura_max',
+        'atraccions.accessibilitat',
+        'atraccions.acces_express',
+        'atraccions.id',
+        'atraccions.path',
+        'atraccions.descripcio'
+
+      ]);
+
+      return view("atraccions", compact('atraccionetes'));
     }
   
     public function entrades()
