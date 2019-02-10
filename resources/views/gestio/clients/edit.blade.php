@@ -45,7 +45,7 @@
        </div>
        <div class="col-md-3 mb-3">
          <label for="date">Data de Naixement *</label>
-         <input type="date" class="form-control form-control-sm" placeholder="Data naixement" name="date" value="{{$usuari->date}}"required>
+         <input type="date" class="form-control form-control-sm" placeholder="Data naixement" name="date" value="{{$usuari->data_naixement}}"required>
        </div>
        <div class="col-md-3 mb-3">
          <label for="sexe">Sexe</label>
@@ -78,12 +78,7 @@
        </div>
      </div>
      <div class="form-row">
-       <div class="col-md-6 mb-6">
-         <label for="contrasenya">Contrasenya *</label>
-         <input type="password" class="form-control form-control-sm" name="contrasenya" value="{{$usuari->password}}"required>
-
-       </div>
-       <div class="col-md-6 mb-6">
+       <div class="col-md-3 mb-3">
          <label for="cp">Codi Postal *</label>
          <input type="text" class="form-control form-control-sm" name="cp" value="{{$usuari->codi_postal}}"required>
          <br>
@@ -91,7 +86,7 @@
      </div>
 
      <button class="btn btn-primary" type="submit" value="Guardar">Modificar</button>
-     <button class="btn btn-secondary" type="reset">Cancel·lar</button>
+     <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel·lar</a>
    </form>
 
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

@@ -20,7 +20,7 @@ class ImageController extends Controller
     
 	public function create()
 	{
-		return view ('gestio/images/create');
+		return view ('gestio/imatges/create');
 	}
 
    public function save(Request $request)
@@ -99,6 +99,6 @@ class ImageController extends Controller
 	    $imatge->nom=$description;
 	    $imatge->save();
 
-	   	return view('gestio/images/create');
+	   	return view('gestio/imatges/create');
 	}
 }

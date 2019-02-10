@@ -61,5 +61,5 @@
  Route::get('/view/atraccions/index', 'AtraccionsController@guardarPDF');
 
  /* gestio imatges */
- Route::get("/gestio/imatges", "ImageController@create")->middleware(['auth','is_admin','verified']);
- Route::post("/gestio/imatges/save", "ImageController@save")->name('image.save')->middleware(['auth','is_admin','verified']);
+ Route::get("/gestio/imatges", "ImageController@create")->name('imatges.create')->middleware(['auth','is_admin','verified']);
+ Route::post("/gestio/imatges/save", "ImageController@save")->name('imatges.save')->middleware(['auth','is_admin','verified']);

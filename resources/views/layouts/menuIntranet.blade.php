@@ -135,6 +135,26 @@
               <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Gestionar Noticia</a>
             </li>
           </ul>
+
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('imatges*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('imatges*') ? 'true' : 'false' }}" href="#submenu10">
+              <span data-feather="alert-triangle"></span>
+              Gestionar Imatges
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+
+          <ul class="nav flex-column collapse {{ request()->routeIs('imatges*') ? 'show' : '' }}" id="submenu10" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('imatges.create') ? 'active' : '' }}" href="{{  URL::route('imatges.create')  }}"><span data-feather="user-plus"></span>Afegir Imatge</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Veure Imatges</a>
+            </li>
+          </ul>
+
+
         </ul>
       </div>
     </nav>

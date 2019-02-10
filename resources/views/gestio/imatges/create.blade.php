@@ -13,7 +13,7 @@
           Pujar Imatge
         </div>
         <div class="card-body">
-          <form method="POST" action="{{route('image.save')}}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('imatges.save') }}" enctype="multipart/form-data">
               @csrf
             <div class="form-group row">
                 <label for="image_path" class="col-md-3 col-form-label text-md-right">Imatge
