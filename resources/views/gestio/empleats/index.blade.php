@@ -50,12 +50,12 @@
                         <th>Nom</th>
                         <th>Cognom1</th>
                         <th>Cognom2</th>
-                        <th>Num Documuent</th>
+                        <th>Num Document</th>
                         <th>Codi Seg Social</th>
                         <th>Especialitat</th>
-                        <th>Carrec</th>
+                        <th>Càrrec</th>
                         <th>Horari</th>
-                        <th colspan="2">Acció</th>
+                        <th colspan="3">Accions</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                         <td>{{ $user->especialitat }}</td>
                         <td>{{ $user->carrec }}</td>
                         <td>{{ $user->id_horari }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('empleats.show', $user->id) }}">Mostrar dades</a></td>
+                        <td><a class="btn btn-success" href="{{ route('empleats.show', $user->id) }}">Mostrar dades</a></td>
                         <td><a class="btn btn-primary" href="{{ route('empleats.edit', $user->id) }}">Modificar</a></td>
                         <td>
                             <form action="{{ route('empleats.destroy', $user->id)}}" method="post">

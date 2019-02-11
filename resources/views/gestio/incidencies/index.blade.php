@@ -44,7 +44,7 @@
   </form>
 
   <div class="table-responsive">
-    <table class="table table-bordered table-hover table-sm">
+    <table class="table table-bordered table-hover table-sm" style="word-wrap: break-word;">
       <thead class="thead-light">
         <tr>
           <th>ID</th>
