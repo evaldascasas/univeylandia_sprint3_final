@@ -47,34 +47,33 @@
                 <table class="table table-bordered table-hover table-sm">
                     <thead class="thead-light">
                         <tr>
-                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Cognom1</th>
+                        <th>Cognom2</th>
+                        <th>Num Documuent</th>
                         <th>Codi Seg Social</th>
-                        <th>Num nomina</th>
-                        <th>IBAN</th>
                         <th>Especialitat</th>
                         <th>Carrec</th>
-                        <th>Data Inici</th>
-                        <th>Data Fi</th>
                         <th>Horari</th>
                         <th colspan="2">Acció</th>
                         </tr>
                     </thead>
                 <tbody>
 
-                    @foreach($dades_empleats as $dades_empleat)
+                    @foreach($users as $user)
                     <tr>
-                        <td>{{ $dades_empleat->id }}</td>
-                        <td>{{ $dades_empleat->codi_seg_social }}</td>
-                        <td>{{ $dades_empleat->num_nomina }}</td>
-                        <td>{{ $dades_empleat->IBAN }}</td>
-                        <td>{{ $dades_empleat->especialitat }}</td>
-                        <td>{{ $dades_empleat->carrec }}</td>
-                        <td>{{ $dades_empleat->data_inici_contracte }}</td>
-                        <td>{{ $dades_empleat->data_fi_contracte }}</td>
-                        <td>{{ $dades_empleat->id_horari }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('empleats.edit', $dades_empleat->id) }}">Modificar</a></td>
+                        <td>{{ $user->nom }}</td>
+                        <td>{{ $user->cognom1 }}</td>
+                        <td>{{ $user->cognom2 }}</td>
+                        <td>{{ $user->numero_document }}</td>
+                        <td>{{ $user->codi_seg_social }}</td>
+                        <td>{{ $user->especialitat }}</td>
+                        <td>{{ $user->carrec }}</td>
+                        <td>{{ $user->id_horari }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('empleats.show', $user->id) }}">Mostrar dades</a></td>
+                        <td><a class="btn btn-primary" href="{{ route('empleats.edit', $user->id) }}">Modificar</a></td>
                         <td>
-                            <form action="{{ route('empleats.destroy', $dades_empleat->id)}}" method="post">
+                            <form action="{{ route('empleats.destroy', $user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>

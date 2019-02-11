@@ -31,7 +31,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'numero_document', 
         'sexe', 
         'telefon', 
-        'id_rol', 
+        'id_rol',
+        'id_dades_empleat',
         'actiu'
     ];
 

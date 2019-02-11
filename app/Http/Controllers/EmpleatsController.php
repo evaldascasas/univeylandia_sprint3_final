@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use \App\dades_empleat;
+use \App\User;
 
 class EmpleatsController extends Controller
 {
@@ -15,9 +17,46 @@ class EmpleatsController extends Controller
      */
     public function index()
     {
-    $dades_empleats = dades_empleat::all();
+    //$dades_empleats = dades_empleat::all();
+    $users = User::whereNotNull('email_verified_at')
+                          ->where('id_rol','!=',1)
+                          ->whereNotNull('id_dades_empleat')
+                          ->leftJoin('dades_empleats','dades_empleats.id','users.id_dades_empleat')
+                          ->leftJoin('rols','rols.id','users.id_rol')
+                          ->leftJoin('horaris', 'horaris.id', 'dades_empleats.id_horari')
+                          ->get([
+                            'users.id',
+                            'users.nom',
+                            'users.cognom1',
+                            'users.cognom2',
+                            'users.email',
+                            'users.password',
+                            'users.data_naixement',
+                            'users.adreca',
+                            'users.ciutat',
+                            'users.provincia',
+                            'users.codi_postal',
+                            'users.tipus_document',
+                            'users.numero_document',
+                            'users.sexe',
+                            'users.telefon',
+                            'users.cognom2',
+                            'users.id_rol',
+                            
 
-    return view('gestio/empleats/index', compact('dades_empleats'));
+                            'dades_empleats.codi_seg_social as codi_seg_social',
+                            'dades_empleats.num_nomina as num_nomina',
+                            'dades_empleats.IBAN as IBAN',
+                            'dades_empleats.especialitat as especialitat',
+                            'dades_empleats.carrec as carrec',
+                            'dades_empleats.data_inici_contracte as data_inici_contracte',
+                            'dades_empleats.data_fi_contracte as data_fi_contracte',
+                            'dades_empleats.id_horari as id_horari',
+
+
+                          ]);
+    
+    return view('gestio/empleats/index', compact('users'));
     }
 
     /**
@@ -39,7 +78,6 @@ class EmpleatsController extends Controller
     public function store(Request $request)
     {
         //
-        
         $dadesEmpleat = new dades_empleat([
             'codi_seg_social' => $request->get('codi_seg_social'),
             'num_nomina' => $request->get('num_nomina'),
@@ -50,7 +88,30 @@ class EmpleatsController extends Controller
             'data_fi_contracte' => $request->get('data_fi_contracte'),
             'id_horari' => $request->get('id_horari')
         ]);
+       
         $dadesEmpleat->save();
+
+        $usuari = new User([
+            'nom' => $request->get('nom'),
+            'cognom1' => $request->get('cognom1'),
+            'cognom2' => $request->get('cognom2'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            'data_naixement' => $request->get('data_naixement'),
+            'adreca' => $request->get('adreca'),
+            'ciutat' => $request->get('ciutat'),
+            'provincia' => $request->get('provincia'),
+            'codi_postal' => $request->get('codi_postal'),
+            'tipus_document' => $request->get('tipus_document'),
+            'numero_document' => $request->get('numero_document'),
+            'sexe' => $request->get('sexe'),
+            'telefon' => $request->get('telefon'),
+            'id_rol' => $request->get('id_rol'),
+            'id_dades_empleat' => ($dadesEmpleat->id),
+            'actiu' => 1
+        ]);
+        $usuari->save();
+
 
         return view('gestio/empleats/create');
     }
@@ -63,9 +124,13 @@ class EmpleatsController extends Controller
      */
     public function show($id)
     {
-        $dades_empleats = dades_empleat::findOrFail($id);
 
-        return view('gestio/empleats/show', compact("dades_empleats"));
+        $user = User::findOrFail($id);
+
+        $dades = dades_empleat::find($user->id_dades_empleat);
+
+       
+        return view('gestio/empleats/show', compact(['user','dades']));
          
     }
 
@@ -77,9 +142,11 @@ class EmpleatsController extends Controller
      */
     public function edit($id)
     {
-        $dades_empleats = dades_empleat::findOrFail($id);
 
-        return view('gestio/empleats/edit', compact("dades_empleats"));
+        $user = User::findOrFail($id);
+        $dades = dades_empleat::find($user->id_dades_empleat);
+
+        return view('gestio/empleats/edit', compact(['user','dades']));
     }
 
     /**
@@ -91,9 +158,37 @@ class EmpleatsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $dades_empleats = dades_empleat::findOrFail($id);
+         $user = User::findOrFail($id);
+        $user->nom = $request->get('nom');
+        $user->cognom1 = $request->get('cognom1');
+        $user->cognom2 = $request->get('cognom2');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+        $user->data_naixement = $request->get('data_naixement');
+        $user->adreca = $request->get('adreca');
+        $user->ciutat = $request->get('ciutat');
+        $user->provincia = $request->get('provincia');
+        $user->codi_postal = $request->get('codi_postal');
+        $user->tipus_document = $request->get('tipus_document');
+        $user->numero_document = $request->get('numero_document');
+        $user->sexe = $request->get('sexe');
+        $user->telefon = $request->get('telefon');
+        $user->id_rol = $request->get('id_rol');
+        $user->save();
 
-         $dades_empleats->update($request->all());
+        $dades = dades_empleat::find($user->id_dades_empleat);
+        $dades->codi_seg_social = $request->get('codi_seg_social');
+        $dades->num_nomina = $request->get('num_nomina');
+        $dades->IBAN = $request->get('IBAN');
+        $dades->especialitat = $request->get('especialitat');
+        $dades->carrec = $request->get('carrec');
+        $dades->data_inici_contracte = $request->get('data_inici_contracte');
+        $dades->data_fi_contracte = $request->get('data_fi_contracte');
+        $dades->id_horari = $request->get('id_horari');
+        $dades->save();
+
+        $user->update($request->all());
+        $dades->update($request->all());
         return redirect('gestio/empleats/');
         
     }
