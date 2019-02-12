@@ -39,7 +39,7 @@
 
  Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
    $title = "Promoció X";
-   return view ('vistesparc/promocio_x', compact('title'));
+   return view ('/promocio_x', compact('title'));
  }]);
 
  /* RUTES GRUP 2 */
