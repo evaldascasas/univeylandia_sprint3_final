@@ -27,6 +27,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
+  <!--Cookie banner-->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+
+	<script>
+		window.addEventListener("load", function () {
+			window.cookieconsent.initialise({
+				"palette": {
+					"popup": {
+						"background": "#237afc"
+					},
+					"button": {
+						"background": "#fff",
+						"text": "#237afc"
+					}
+				},
+				"theme": "classic",
+				"position": "bottom-right",
+				"content": {
+					"message": "Aquesta pàgina web utilitza cookies per millorar l'experiència d'usuari.",
+					"dismiss": "D'acord!",
+					"link": "Més info",
+					"href": "#"
+				}
+			})
+		});
+	</script>
+
   <script>
     $(function() {
         $('.dropdown-toggle').click(function() {

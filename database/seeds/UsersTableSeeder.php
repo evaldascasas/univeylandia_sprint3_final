@@ -39,23 +39,23 @@ class UsersTableSeeder extends Seeder
             ]);
         }
         DB::table('users')->insert([
-            'nom' => 'Evaldas',
-            'cognom1' => 'Casas',
+            'nom' => 'Paco',
+            'cognom1' => 'Ramon',
             'cognom2' => null,
-            'email' => 'evaldascasas3@iesmontsia.org',
+            'email' => 'pacoramon@univeylandia-parc.cat',
             'email_verified_at' => now(),
             'password' => Hash::make('Alumne123'),
             'data_naixement' => '1995-09-06',
-            'adreca' => 'Enric Granados 28 1E',
-            'ciutat' => 'Alcanar',
+            'adreca' => 'Calle Piruleta 25',
+            'ciutat' => 'Amposta',
             'provincia' => 'Tarragona',
-            'codi_postal' => '43530',
-            'tipus_document' => '2',
-            'numero_document' => 'X5684508N',
+            'codi_postal' => '43870',
+            'tipus_document' => 'DNI',
+            'numero_document' => '47481130Z',
             'sexe' => 'Home',
             'telefon' => '657337571',
             'id_rol' => 2,
-            'id_dades_empleat' => null,
+            'id_dades_empleat' => 1,
             'actiu' => 1,
             'remember_token' => null
         ]);

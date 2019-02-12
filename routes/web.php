@@ -19,6 +19,7 @@
  Route::get('/gestio',"HomeController@gestio")->name('gestio')->middleware(['auth','is_admin','verified']);
  Route::get('/perfil',"HomeController@perfil")->name('perfil')->middleware(['auth','verified']);
  Route::get('/incidencia',"HomeController@incidencia")->name('incidencia')->middleware(['auth','verified']);
+ Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
@@ -41,11 +42,6 @@
    return view ('vistesparc/promocio_x', compact('title'));
  }]);
 
- Route::get('cistella',['as' => 'promocio_x', function(){
-   $title = "Cistella";
-   return view ('vistesparc/cistella', compact('title'));
- }])->middleware('auth');
-
  /* RUTES GRUP 2 */
  Route::resource('/gestio/atraccions', 'AtraccionsController')->middleware(['auth','is_admin','verified']);
 
@@ -63,3 +59,13 @@
  /* gestio imatges */
  Route::get("/gestio/imatges", "ImageController@create")->name('imatges.create')->middleware(['auth','is_admin','verified']);
  Route::post("/gestio/imatges/save", "ImageController@save")->name('imatges.save')->middleware(['auth','is_admin','verified']);
+
+ /* Part Jose */
+ Route::post('/entrades', array('as' => 'entrades','uses' => 'HomeController@parc_afegir_cistella'));
+ Route::resource('/gestio/productes', 'gestioProductes')->middleware(['auth','is_admin','verified']);
+ Route::resource('/gestio/ventes', 'VentesController')->middleware(['auth','is_admin','verified']);
+
+ Route::get('/cistella', 'HomeController@cistella')->name('cistella')->middleware(['auth','verified']);
+ Route::delete('/cistella', 'HomeController@cistella_delete')->name('cistella')->middleware(['auth','verified']);
+ Route::get('/compra', 'HomeController@compra')->name('compra')->middleware(['auth','verified']);
+ Route::get('/compra_finalitzada', 'HomeController@compra_finalitzada')->name('compra_finalitzada')->middleware(['auth','verified']);

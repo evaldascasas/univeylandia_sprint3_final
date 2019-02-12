@@ -121,13 +121,36 @@
 
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#submenu9">
+            <a class="nav-link {{ request()->routeIs('productes*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('productes*') ? 'true' : 'false' }}" href="#submenu8">
+              <span data-feather="truck"></span>
+              Gestionar Productes
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+
+          <ul class="nav flex-column collapse {{ request()->routeIs('productes*') ? 'show' : '' }}" id="submenu8" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('productes.create') ? 'active' : '' }}" href="{{  URL::route('productes.create')  }}"><span data-feather="plus-square"></span>Crear Producte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('productes.index') ? 'active' : '' }}" href="{{ URL::route('productes.index') }}"><span data-feather="file-text"></span>Gestionar Productes</a>
+            </li>
+          </ul>
+
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('ventes*') ? 'active' : '' }}" href="{{  URL::route('ventes.index')  }}"><span data-feather="truck"></span> Gestionar Ventes</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#submenu10">
               <span data-feather="alert-triangle"></span>
               Gestionar Noticies
               <span data-feather="chevron-right"></span>
             </a>
           </li>
-          <ul class="nav flex-column collapse" id="submenu9" data-parent="#sidebar">
+          <ul class="nav flex-column collapse" id="submenu10" data-parent="#sidebar">
             <li class="nav-item">
               <a class="nav-link nav-interior" href="#"><span data-feather="user-plus"></span>Crear Noticia</a>
             </li>
@@ -138,14 +161,14 @@
 
 
           <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('imatges*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('imatges*') ? 'true' : 'false' }}" href="#submenu10">
+            <a class="nav-link {{ request()->routeIs('imatges*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('imatges*') ? 'true' : 'false' }}" href="#submenu11">
               <span data-feather="alert-triangle"></span>
               Gestionar Imatges
               <span data-feather="chevron-right"></span>
             </a>
           </li>
 
-          <ul class="nav flex-column collapse {{ request()->routeIs('imatges*') ? 'show' : '' }}" id="submenu10" data-parent="#sidebar">
+          <ul class="nav flex-column collapse {{ request()->routeIs('imatges*') ? 'show' : '' }}" id="submenu11" data-parent="#sidebar">
             <li class="nav-item">
               <a class="nav-link nav-interior {{ request()->routeIs('imatges.create') ? 'active' : '' }}" href="{{  URL::route('imatges.create')  }}"><span data-feather="user-plus"></span>Afegir Imatge</a>
             </li>

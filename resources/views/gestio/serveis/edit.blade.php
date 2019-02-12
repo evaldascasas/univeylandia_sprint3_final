@@ -101,6 +101,7 @@
       </table>
 
       <button class="btn btn-primary" type="submit" value="Modificar assignació">Modificar Assignació</button>
+      <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel·lar</a>
     </form>
 
 

@@ -14,10 +14,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolsTableSeeder::class,
             HorarisTableSeeder::class,
+            DadesEmpleatSeeder::class,
             UsersTableSeeder::class,
             EstatIncidenciesTableSeeder::class,
+            ServeisSeeder::class,
             TipusPrioritatTableSeeder::class,
-            TipusAtraccionsTableSeeder::class
+            TipusAtraccionsTableSeeder::class,
+            TipusProducteSeeder::class,
+            ZonesSeeder::class,
         ]);
     }
 }

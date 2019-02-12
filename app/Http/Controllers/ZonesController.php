@@ -94,7 +94,7 @@ class ZonesController extends Controller
       $zona->save();
 
       return redirect('/gestio/zones')->with('success', 'Zona actualitzada');
-      }
+    }
 
     /**
      * Remove the specified resource from storage.

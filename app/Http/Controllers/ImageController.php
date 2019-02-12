@@ -23,8 +23,8 @@ class ImageController extends Controller
 		return view ('gestio/imatges/create');
 	}
 
-   public function save(Request $request)
-   {
+   	public function save(Request $request)
+   	{
 	   //validació
 	   $validate = $this->validate($request,[
 		   'description' => 'required',

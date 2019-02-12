@@ -13,7 +13,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 <div class="card uper">
   <div class="card-header">
-    Edit Share
+    Editar Zona: {{ $zona->nom }}
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -23,16 +23,17 @@
               <li>{{ $error }}</li>
             @endforeach
         </ul>
-      </div><br />
+      </div>
     @endif
       <form method="post" action="{{ route('zones.update', $zona->id) }}">
         @method('PATCH')
         @csrf
         <div class="form-group">
           <label for="nom">Zona Nom:</label>
-          <input type="text" class="form-control" name="zona_nom" value={{ $zona->zona_nom }}>
+          <input type="text" class="form-control" name="zona_nom" value="{{ $zona->nom }}">
         </div>
         <button type="submit" class="btn btn-primary" value="Actualitzar">Actualitza</button>
+        <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel·lar</a>
       </form>
   </div>
 </div>

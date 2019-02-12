@@ -31,8 +31,8 @@
         </div>
 
         <div class="form-group">
-          <label for="name">Descripcion:</label>
-          <textarea name="descripcio"></textarea>
+          <label for="name">Descripcio</label>
+          <textarea name="descripcio" id="descripcio_atraccio"></textarea>
         </div>
 
         <div class="form-group">

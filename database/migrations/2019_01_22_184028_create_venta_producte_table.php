@@ -17,6 +17,7 @@ class CreateVentaProducteTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_usuari');
             $table->foreign('id_usuari')->references('id')->on('users');
+            $table->integer('preu_total');
             $table->boolean('estat');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

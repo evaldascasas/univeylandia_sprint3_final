@@ -15,8 +15,8 @@ class CreateDadesEmpleatTable extends Migration
     {
         Schema::create('dades_empleats', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('codi_seg_social');
-          $table->string('num_nomina');
+          $table->string('codi_seg_social')->unique();
+          $table->string('num_nomina')->unique();
           $table->string('IBAN');
           $table->string('especialitat');
           $table->string('carrec');

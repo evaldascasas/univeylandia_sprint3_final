@@ -27,7 +27,6 @@
           <li><a href="{{ route('noticies') }}">Noticies</a></li>
           <li><a href="{{ route('promocions') }}">Promocions</a></li>
           <li><a href="{{ route('atraccions') }}">Atraccions</a></li>
-          <li><a href="{{ route('entrades') }}">Compra d'entrades</a></li>
         </ul>
       </div>
 

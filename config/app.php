@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         /* IMATGES */
         Intervention\Image\ImageServiceProvider::class,
+        /* QR CODES */
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +235,8 @@ return [
         'aliases' => [
             'PDF' => Barryvdh\DomPDF\Facade::class,
         ],
+        /* QR CODES */
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

@@ -107,7 +107,8 @@ class ServeisController extends Controller
 
       $zones = Zona::all();
       $serveis = Servei::all();
-        return view('gestio/serveis/edit', compact(['assign','serveis','zones','treballadors']));
+
+      return view('gestio/serveis/edit', compact(['assign','serveis','zones','treballadors']));
     }
 
     /**

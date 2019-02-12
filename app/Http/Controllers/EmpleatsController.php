@@ -66,7 +66,7 @@ class EmpleatsController extends Controller
     public function create()
     {
         $horaris = Horari::all();
-        $rols = Rol::where('id','!=',1)->get();
+        $rols = Rol::where('id','!=',1)->orderBy('id','DESC')->get();
 
         return view('gestio/empleats/create', compact(['horaris','rols']));
     }
@@ -116,7 +116,7 @@ class EmpleatsController extends Controller
         
         $usuari->save();
 
-        return view('gestio/empleats/create');
+        return redirect('/gestio/empleats')->with('success', 'Empleat creat correctament');
     }
 
     /**
@@ -166,7 +166,6 @@ class EmpleatsController extends Controller
         $user->cognom1 = $request->get('cognom1');
         $user->cognom2 = $request->get('cognom2');
         $user->email = $request->get('email');
-        $user->password = $request->get('password');
         $user->data_naixement = $request->get('data_naixement');
         $user->adreca = $request->get('adreca');
         $user->ciutat = $request->get('ciutat');
