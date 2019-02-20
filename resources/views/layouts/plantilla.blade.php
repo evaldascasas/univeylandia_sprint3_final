@@ -19,7 +19,7 @@
     @yield("menu1")
     @include("layouts.menu2")
     @yield("menu2")
-    @yield("body")
+    @yield("content")
     @include("layouts.footer")
     @yield("footer")
 
