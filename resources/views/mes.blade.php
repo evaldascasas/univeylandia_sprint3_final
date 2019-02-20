@@ -47,7 +47,7 @@
     document.write("<p style='background:yellow'>" +
         ptxt2.toUpperCase()+ "</p>");
   </script>
-=======
+
 <!-- DOM: Insereix un node abans d'un altre node -->
 <script type="text/javascript">
     function insertMessage() {
