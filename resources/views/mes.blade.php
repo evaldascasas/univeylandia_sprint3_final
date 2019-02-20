@@ -10,8 +10,13 @@
 <h4 id="subtitol" class="text-center">No et pergues la <b>MILLOR</b> part del parc</h4>
 
 <div id="div_taula">
+  </div>
+<p id="para1">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
+   les nostres tendes sortejen un gran premi.</p>
 
-</div>
+<p id="para2">Per cada compra et donarem una papereta, totes tenen premis, però
+  només serà una la guanyadora.</p>
+
 
 <!-- DOM CREATE TABLE -->
 <script>
@@ -29,6 +34,18 @@
     h4tag.style.fontSize = "32";
     h4tag.style.color = "darkgrey";
 </script>
+<!-- US GET ELEMENT BY ID -->
+
+
+  <script type="text/javascript">
+    document.write("<p>⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇</p>");
+    ptxt1=document.getElementById("para1").innerHTML;
+    ptxt2=document.getElementById("para2").innerHTML;
+    document.write("<p style='background:yellow'>"+
+        ptxt1.toUpperCase()+ "</p>");
+    document.write("<p style='background:yellow'>" +
+        ptxt2.toUpperCase()+ "</p>");
+  </script>
 @endsection
 
 @section("footer")
