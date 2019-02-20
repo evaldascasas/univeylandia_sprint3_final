@@ -65,6 +65,8 @@
  Route::post('/entrades', array('as' => 'entrades','uses' => 'HomeController@parc_afegir_cistella'));
  Route::resource('/gestio/productes', 'gestioProductes')->middleware(['auth','is_admin','verified']);
  Route::resource('/gestio/ventes', 'VentesController')->middleware(['auth','is_admin','verified']);
+ Route::get('/tendes', array('as' => 'tendes','uses' => 'HomeController@tendes_inter'));
+ Route::get('/tendes/figures', array('as' => 'tenda_figures','uses' => 'HomeController@tenda_figures'));
 
  Route::get('/cistella', 'HomeController@cistella')->name('cistella')->middleware(['auth','verified']);
  Route::delete('/cistella', 'HomeController@cistella_delete')->name('cistella')->middleware(['auth','verified']);
