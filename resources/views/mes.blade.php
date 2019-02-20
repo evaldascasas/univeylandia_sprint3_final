@@ -5,10 +5,10 @@
 @section("menu2")
 @endsection
 @section("content")
-
+<body onload="insertMessage()">
 <h1 class="text-center"> Coneix les tendes i restaurants del parc</h1>
 <h4 id="subtitol" class="text-center">No et pergues la <b>MILLOR</b> part del parc</h4>
-
+<p id="gelatilandia">Gelatilandia ...</p>
 <div id="div_taula">
   </div>
 <p id="para1">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
@@ -17,6 +17,8 @@
 <p id="para2">Per cada compra et donarem una papereta, totes tenen premis, però
   només serà una la guanyadora.</p>
 
+
+</body>
 
 <!-- DOM CREATE TABLE -->
 <script>
@@ -36,7 +38,6 @@
 </script>
 <!-- US GET ELEMENT BY ID -->
 
-
   <script type="text/javascript">
     document.write("<p>⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇</p>");
     ptxt1=document.getElementById("para1").innerHTML;
@@ -46,6 +47,18 @@
     document.write("<p style='background:yellow'>" +
         ptxt2.toUpperCase()+ "</p>");
   </script>
+=======
+<!-- DOM: Insereix un node abans d'un altre node -->
+<script type="text/javascript">
+    function insertMessage() {
+        var newPara = document.createElement("p");
+        var newText = document.createTextNode("Univeypizza ...");
+        // If you copy this, don’t break the lines.
+        newPara.appendChild(newText);
+        var firstPara = document.getElementById("gelatilandia");
+        document.body.insertBefore(newPara, firstPara);
+    }
+</script>
 @endsection
 
 @section("footer")
