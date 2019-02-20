@@ -13,13 +13,16 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{URL::route('atraccions')}}">Atraccions</a>
+        <a class="nav-link" href="{{ route('atraccions') }}">Atraccions</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="{{URL::route('entrades')}}">Compra entrades</a>
+        <a class="nav-link" href="{{ route('entrades') }}">Compra entrades</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="{{URL::route('contacte')}}">Contacte</a>
+        <a class="nav-link" href="{{ route('contacte') }}">Contacte</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="{{ route('mes') }}">Més</a>
       </li>
 
     </ul>

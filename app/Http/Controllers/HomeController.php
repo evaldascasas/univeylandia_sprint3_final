@@ -100,6 +100,11 @@ class HomeController extends Controller
       return view('perfil');
     }
 
+    public function mes()
+    {
+      return view('mes');
+    }
+
     public function pizzeria()
     {
       return view('pizzeria');
