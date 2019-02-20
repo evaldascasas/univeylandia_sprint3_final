@@ -286,5 +286,17 @@ class HomeController extends Controller
 
       return redirect('/cistella')->with('success', 'Producte eliminat correctament');
     }
+    
+    public function tendes_inter(){
+
+      return view("/tendes");
+
+    }
+    
+    public function tenda_figures(){
+
+      return view("/tenda_figures");
+
+    }
 
 }
