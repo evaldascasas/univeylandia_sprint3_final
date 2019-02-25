@@ -27,13 +27,14 @@
 <br>
 <div id="div_taula">
   </div>
-<p id="para1">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
+<p id="para1" style="font-weight:bolder;">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
    les nostres tendes sortejen un gran premi.</p>
 
 <p id="para2">Per cada compra et donarem una papereta, totes tenen premis, però
   només serà una la guanyadora.</p>
 
-
+<input type="button" style="margin-left: 10px;" onClick="JavaScript:stylePara(false);" value="Canviar estil" />
+<br><br>
 </body>
 
 <!-- DOM CREATE TABLE -->
@@ -63,7 +64,7 @@
     document.write("<p style='background:yellow'>" +
         ptxt2.toUpperCase()+ "</p>");
   </script>
-  
+
 <!-- DOM: Insereix un node abans d'un altre node -->
 <script type="text/javascript">
     function insertMessage() {
@@ -111,6 +112,14 @@
         // Insert the table into the document tree
         Tcontainer=document.getElementById("TableContainer");
         Tcontainer.appendChild(Table);
+    }
+    /*DOM: Clonant estils de nodes*/
+    function stylePara(mode){
+        var p1 = document.getElementById("para1");
+        var p2 = document.getElementById("para2");
+        var p1Style=p1.getAttributeNode("style");
+        var cloneP1Style=p1Style.cloneNode(mode);
+        p2.setAttributeNode(cloneP1Style);
     }
 </script>
 
