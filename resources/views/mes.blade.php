@@ -35,6 +35,8 @@
 
 <input type="button" style="margin-left: 10px;" onClick="JavaScript:stylePara(false);" value="Canviar estil" />
 <br><br>
+
+<div id="NewTableContainer" align="center"></div>
 </body>
 
 <!-- DOM CREATE TABLE -->
@@ -112,6 +114,13 @@
         // Insert the table into the document tree
         Tcontainer=document.getElementById("TableContainer");
         Tcontainer.appendChild(Table);
+
+        /*CLONAR TAULA*/
+        var tableCopy = document.getElementById("myTable");
+        var newTable = tableCopy.cloneNode(true);
+        newTable.id = "newtable_id";
+        newDiv = document.getElementById("NewTableContainer");
+        newDiv.appendChild(newTable);
     }
     /*DOM: Clonant estils de nodes*/
     function stylePara(mode){
