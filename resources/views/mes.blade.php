@@ -6,43 +6,57 @@
 @endsection
 @section("content")
 <style type="text/css">
-
     table {
-      width:380px;
-        border: 2px solid #4286f4; }
-    th { font-size: larger;
-        font-family:arial}
-    td { border: 1px solid #4286f4;
+        width: 380px;
+        border: 2px solid #4286f4;
+    }
+
+    th {
+        font-size: larger;
+        font-family: arial
+    }
+
+    td {
+        border: 1px solid #4286f4;
         padding: 5px;
-        background-color:#ffffff;
-        font-family:arial;
+        background-color: #ffffff;
+        font-family: arial;
     }
 </style>
-<body onload="insertMessage()">
-<h1 class="text-center"> Coneix les tendes i restaurants del parc</h1>
-<h4 id="subtitol" class="text-center">No et pergues la <b>MILLOR</b> part del parc</h4>
-<p id="gelatilandia"><b>Gelatilandia ...</b></p>
 
-<div id="TableContainer" align="center"></div>
-<br>
-<div id="div_taula">
-  </div>
-<p id="para1" style="font-weight:bolder;">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
-   les nostres tendes sortejen un gran premi.</p>
+<div class="container jumbotron" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="font-weight-bold text-center text-uppercase">Coneix les tendes i restaurants del parc</h1>
+            <h4 id="subtitol" class="text-center">No et pergues la <b>MILLOR</b> part del parc</h4>
+        </div>
+    </div>
 
-<p id="para2">Per cada compra et donarem una papereta, totes tenen premis, però
-  només serà una la guanyadora.</p>
+    <!--<div>-->
+    <p id="gelatilandia"><b>Gelatilandia ...</b></p>
 
-<input type="button" style="margin-left: 10px;" onClick="JavaScript:stylePara(false);" value="Canviar estil" />
-<br><br>
+    <div id="TableContainer"></div>
 
-<div id="NewTableContainer" align="center"></div>
-</body>
+    <div id="div_taula"></div>
+
+    <p id="para1" style="font-weight:bolder;">Avui es un gran dia per a estar al nostre parc d'atraccions ja que
+        les nostres tendes sortejen un gran premi.</p>
+
+    <p id="para2">Per cada compra et donarem una papereta, totes tenen premis, però
+        només serà una la guanyadora.</p>
+
+    <input type="button" class="btn btn-danger" onclick="stylePara(false);" value="Canviar estil">
+
+    <div id="NewTableContainer"></div>
+
+    <input type="button" class="btn btn-outline-success" onclick="deleteNodes()" value="Borrar esta basura">
+
+</div>
 
 <!-- DOM CREATE TABLE -->
 <script>
     function tableCreate() {
-        var div_taula = document.getElementById('div_taula')[0];
+        var div_taula = document.getElementById('div_taula');
         var taula = document.createElement('table');
         var thead = taula.appendChild(document.createElement('thead'));
     }
@@ -55,17 +69,17 @@
     h4tag.style.fontSize = "32";
     h4tag.style.color = "darkgrey";
 </script>
-<!-- US GET ELEMENT BY ID -->
 
-  <script type="text/javascript">
+<!-- US GET ELEMENT BY ID -->
+<script type="text/javascript">
     document.write("<p>⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇</p>");
-    ptxt1=document.getElementById("para1").innerHTML;
-    ptxt2=document.getElementById("para2").innerHTML;
-    document.write("<p style='background:yellow'>"+
-        ptxt1.toUpperCase()+ "</p>");
+    ptxt1 = document.getElementById("para1").innerHTML;
+    ptxt2 = document.getElementById("para2").innerHTML;
     document.write("<p style='background:yellow'>" +
-        ptxt2.toUpperCase()+ "</p>");
-  </script>
+        ptxt1.toUpperCase() + "</p>");
+    document.write("<p style='background:yellow'>" +
+        ptxt2.toUpperCase() + "</p>");
+</script>
 
 <!-- DOM: Insereix un node abans d'un altre node -->
 <script type="text/javascript">
@@ -75,14 +89,13 @@
         // If you copy this, don’t break the lines.
         newPara.appendChild(newText);
         var firstPara = document.getElementById("gelatilandia");
-        document.body.insertBefore(newPara, firstPara);
-
+        firstPara.insertBefore(newPara, firstPara);
 
         /* DOM: Crear una taula */
 
         // Create the table elements
         var Table = document.createElement("table");
-        Table.setAttribute("id","myTable"); // Create id
+        Table.setAttribute("id", "myTable"); // Create id
         var THead = document.createElement("thead");
         var TBody = document.createElement("tbody");
         var Row, Cell;
@@ -112,7 +125,7 @@
         Row.appendChild(Cell);
 
         // Insert the table into the document tree
-        Tcontainer=document.getElementById("TableContainer");
+        Tcontainer = document.getElementById("TableContainer");
         Tcontainer.appendChild(Table);
 
         /*CLONAR TAULA*/
@@ -122,13 +135,24 @@
         newDiv = document.getElementById("NewTableContainer");
         newDiv.appendChild(newTable);
     }
+
     /*DOM: Clonant estils de nodes*/
-    function stylePara(mode){
+    function stylePara(mode) {
         var p1 = document.getElementById("para1");
         var p2 = document.getElementById("para2");
-        var p1Style=p1.getAttributeNode("style");
-        var cloneP1Style=p1Style.cloneNode(mode);
+        var p1Style = p1.getAttributeNode("style");
+        var cloneP1Style = p1Style.cloneNode(mode);
         p2.setAttributeNode(cloneP1Style);
+    }
+
+    window.onload = insertMessage();
+    window.onload = tableCreate();
+
+</script>
+
+<script>
+    function deleteNodes() {
+        
     }
 </script>
 

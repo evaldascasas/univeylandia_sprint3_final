@@ -24,8 +24,8 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->user()->id_rol != 2) {
-            $this->auth->logout();
+        if ($this->auth->user()->id_rol !== 2) {
+            //$this->auth->logout();
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
