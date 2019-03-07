@@ -106,10 +106,10 @@
 
             <td><a href="{{ route('productes.edit',$producte->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
-                <form action="{{ route('productes.destroy',$producte->id)}}" method="post" onsubmit="return confirm('Estàs segur de que vols eliminar el producte?');">
+                <form action="{{ route('productes.destroy',$producte->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
+                  <button id="confirm_delete" class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
         </tr>

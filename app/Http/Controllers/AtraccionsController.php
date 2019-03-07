@@ -205,7 +205,7 @@ class AtraccionsController extends Controller
         $mytime = Carbon\Carbon::now();
         $temps = $mytime->toDateString();
 
-        $atraccions = Atraccion::all();
+        //$atraccions = Atraccion::all();
         $pdf = PDF::loadView('/gestio/atraccions/pdf', compact('atraccionetes'));
         return $pdf->download('atraccions'.$temps.'.pdf');
 

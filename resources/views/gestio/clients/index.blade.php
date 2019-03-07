@@ -71,10 +71,10 @@
           <td>{{$usuari->telefon}}</td>
           <td><a href="{{route('clients.edit', $usuari->id)}}" type="button" class="btn btn-primary">Modificar</a></td>
           <td>
-            <form method="post" action="/gestio/clients/{{$usuari->id}}">
+            <form method="post" action="{{route('clients.destroy', $usuari->id)}}">
               @csrf
               @method('DELETE')
-              <button class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
+              <button id="confirm_delete" class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
             </form>
           </td>
         </tr>

@@ -11,7 +11,7 @@
   </head>
   <body>
       <div> 
-        <img margin="0px" src="/home/alumne/Documentos/univeylandia_sprint3_final/public/img/univeylandia_logo_petit.png">
+        <img margin="0px" src="<?php echo $_SERVER["DOCUMENT_ROOT"]."/img/univeylandia_logo_petit.png";?>">
       </div>
     <div class="row">
       <div class="col-12">

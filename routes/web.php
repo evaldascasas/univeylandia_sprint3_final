@@ -27,9 +27,8 @@
  Auth::routes(['verify' => true]);
 
  Route::post('/incidencia', 'HomeController@store_incidencia')->name('incidencia')->middleware(['auth','verified']);
- //Route::get('/home', 'HomeController@index')->name('home');
 
- Route::get('gestio/incidencies/assign', 'IncidenciesController@assigned')->name('incidencies.assign');
+ Route::get('gestio/incidencies/assign', 'IncidenciesController@assigned')->name('incidencies.assign')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/incidencies', 'IncidenciesController')->middleware(['auth','is_admin','verified']);
 
@@ -53,16 +52,17 @@
  Route::resource('/gestio/clients', 'ClientsController')->middleware(['auth','is_admin','verified']);
  
  /* A SABER */
- Route::get('/view/vustesoarc/atraccions', 'AtraccionsController@index');
+ //Route::get('/view/vustesoarc/atraccions', 'AtraccionsController@index');
 
  /* Guardar PDF */
- Route::get('/view/atraccions/index', 'AtraccionsController@guardarPDF');
+ Route::get('/view/atraccions/index', 'AtraccionsController@guardarPDF')->middleware(['auth','is_admin','verified']);
+ Route::get('/view/incidencies/assign', 'IncidenciesController@assignadesGuardarPDF')->middleware(['auth','is_admin','verified']);
 
  /* gestio imatges */
  Route::get("/gestio/imatges", "ImageController@create")->name('imatges.create')->middleware(['auth','is_admin','verified']);
  Route::post("/gestio/imatges/save", "ImageController@save")->name('imatges.save')->middleware(['auth','is_admin','verified']);
 
- /* Part Jose */
+ /* Venda productes + cistella */
  Route::post('/entrades', array('as' => 'entrades','uses' => 'HomeController@parc_afegir_cistella'));
  Route::resource('/gestio/productes', 'gestioProductes')->middleware(['auth','is_admin','verified']);
  Route::resource('/gestio/ventes', 'VentesController')->middleware(['auth','is_admin','verified']);

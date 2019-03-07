@@ -77,7 +77,7 @@
                             <form action="{{ route('empleats.destroy', $user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
+                                <button id="confirm_delete" class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
                             </form>
                         </td>
                     </tr>

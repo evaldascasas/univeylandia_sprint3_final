@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
 use \App\User;
 use Auth;
+use Image;
+use PDF;
+use Carbon;
 
 class IncidenciesController extends Controller
 {
@@ -19,7 +21,8 @@ class IncidenciesController extends Controller
      */
     public function index()
     {
-        $incidencies = DB::table('incidencies')->where('id_estat', 1)->orderBy('id_prioritat', 'DESC')
+        $incidencies = Incidencia::where('id_estat', 1)
+        ->orderBy('id_prioritat', 'DESC')
         ->join('users AS u1','incidencies.id_usuari_reportador','u1.id')
         ->join('tipus_prioritat','incidencies.id_prioritat','tipus_prioritat.id')
         ->join('estat_incidencies','estat_incidencies.id','incidencies.id_estat')
@@ -42,7 +45,8 @@ class IncidenciesController extends Controller
      */
     public function assigned()
     {
-        $incidencies = DB::table('incidencies')->where('id_estat', 2)->orderBy('id_prioritat', 'DESC')
+        $incidencies = Incidencia::where('id_estat', 2)
+        ->orderBy('id_prioritat', 'DESC')
         ->join('users AS u1', 'incidencies.id_usuari_reportador', 'u1.id')
         ->join('users AS u2', 'incidencies.id_usuari_assignat', 'u2.id')
         ->join('tipus_prioritat', 'incidencies.id_prioritat', 'tipus_prioritat.id')
@@ -72,7 +76,6 @@ class IncidenciesController extends Controller
 
         return view('gestio/incidencies/create', compact('prioritats'));
     }
-
 
 
     /**
@@ -203,4 +206,36 @@ class IncidenciesController extends Controller
 
         return redirect('gestio/incidencies')->with('success', 'Incidència finalitzada correctament');
     }
+
+    /**
+     * Generate a PDF.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function assignadesGuardarPDF()
+    {
+        $incidencies = Incidencia::where('id_estat', 2)
+        ->orderBy('id_prioritat', 'DESC')
+        ->join('users AS u1', 'incidencies.id_usuari_reportador', 'u1.id')
+        ->join('users AS u2', 'incidencies.id_usuari_assignat', 'u2.id')
+        ->join('tipus_prioritat', 'incidencies.id_prioritat', 'tipus_prioritat.id')
+        ->join('estat_incidencies', 'incidencies.id_estat', 'estat_incidencies.id')
+        ->get([
+            'incidencies.id as id',
+            'incidencies.titol as titol',
+            'incidencies.descripcio as descripcio',
+            'u1.nom as nom_usuari_reportador',
+            'u2.nom as nom_usuari_assignat',
+            'tipus_prioritat.nom_prioritat as nom_prioritat',
+            'estat_incidencies.nom_estat as nom_estat'
+        ]);
+
+        $temps = Carbon\Carbon::now();
+        $temps = $temps->toDateString();
+
+        $pdf = PDF::loadView('/gestio/incidencies/assignades_pdf', compact('incidencies'));
+
+        return $pdf->download('incidencies_assignades_'.$temps.'.pdf');
+    }
+
 }

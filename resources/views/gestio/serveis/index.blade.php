@@ -63,10 +63,10 @@
                         <td>{{ $servei_zona->nom_empleat }}</td>
                         <td><a class="btn btn-primary" href="{{ route('serveis.edit', $servei_zona->id) }}">Modificar</a></td>
                         <td>
-                            <form action="{{ route('serveis.destroy', $servei_zona->id)}}" method="post" onsubmit="return confirm('Estàs segur de voler eliminar aquesta assignació?');">
+                            <form action="{{ route('serveis.destroy', $servei_zona->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
+                                <button id="confirm_delete" class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
                             </form>
                         </td>
                     </tr>
