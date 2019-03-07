@@ -4,7 +4,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Films Nòmades') }}</title>
+  <title>{{ config('app.name', 'Parc Atraccions Univeylandia') }}</title>
   
   <link rel="icon" href="{{ asset('img/icon.png') }}" type="image/gif">
   <meta charset="utf-8">
