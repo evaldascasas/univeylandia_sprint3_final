@@ -18,6 +18,7 @@ class CreateNoticiaTable extends Migration
             $table->string('titol');
             $table->text('descripcio');
             $table->unsignedInteger('id_usuari');
+            $table->unsignedInteger('categoria');
             $table->string('path_img');
             $table->foreign('id_usuari')->references('id')->on('users');
             $table->foreign('categoria')->references('id')->on('categories');
