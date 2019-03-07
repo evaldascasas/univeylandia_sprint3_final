@@ -20,6 +20,7 @@ class CreateNoticiaTable extends Migration
             $table->unsignedInteger('id_usuari');
             $table->string('path_img');
             $table->foreign('id_usuari')->references('id')->on('users');
+            $table->foreign('categoria')->references('id')->on('categories');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
