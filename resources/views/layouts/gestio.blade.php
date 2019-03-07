@@ -38,10 +38,10 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href=" {{ asset('css/styleGestio.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('css/styleGestio.css') }}" type="text/css">
 
   <!-- Icon -->
-  <link rel="icon" href="/img/icon.png" type="image/gif">
+  <link rel="icon" href="{{ asset('img/icon.png') }}" type="image/gif">
 
   <!--<style>
   .fakeimg {
