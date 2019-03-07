@@ -9,7 +9,8 @@
     <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 22rem;">
             <div class="card-body">
-                <img src="/img/hotel.jpg" class="rounded-circle" alt="imatge de perfil" width="304" height="236">
+                <img src="{{ asset('img/bart.jpg') }}" class="rounded-circle" alt="profile-img" style="max-width: 100%;
+  height: auto;">
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Nom: </strong>{{ Auth::user()->nom }}</li>
@@ -20,8 +21,8 @@
                 <li class="list-group-item"><strong>Telèfon: </strong>{{ Auth::user()->telefon }}</li>
             </ul>
             <div class="card-body">
-                <a href="#" class="btn btn-primary">Modificar Perfil</a>
-                <a href="#" class="btn btn-secondary">Eliminar Perfil</a>
+                <a href="#" class="btn btn-primary">Modificar</a>
+                <a href="#" class="btn btn-secondary">Borrar compte</a>
             </div>
         </div>
     </div>

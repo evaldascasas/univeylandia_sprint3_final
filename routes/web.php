@@ -21,6 +21,7 @@
  Route::get('/incidencia',"HomeController@incidencia")->name('incidencia')->middleware(['auth','verified']);
  Route::get('/mes', "HomeController@mes")->name('mes');
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
+ Route::get('/faq',"HomeController@faq")->name('faq');
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);

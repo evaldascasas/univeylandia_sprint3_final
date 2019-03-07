@@ -7,81 +7,78 @@
 @section("content")
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <style>
-      .uper {
-        margin-top: 40px;
-      }
+        .uper {
+            margin-top: 40px;
+        }
     </style>
     @if(session()->get('success'))
     <div class="uper">
         <div class="alert alert-success">
-          {{ session()->get('success') }}
+            {{ session()->get('success') }}
         </div>
     </div>
     @endif
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Llistat d'incidències assignades</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Llistat d'incidències assignades</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary" value="Exportar">
-                  <span data-feather="save"></span>
-                  Exportar
+                    <span data-feather="save"></span>
+                    Exportar PDF
                 </button>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
-            <form method="post" style="margin-top=50px;">
-              <div class="form-row">
-                <div class="col-10">
-                  <input class="form-control" type="text" name="filtre" placeholder="Filtrar...">
-                </div>
-                <div class="form-group row">
-                  <div class="offset-sm-2 col-sm-10">
-                    <input type="submit" class="btn btn-primary" name="buscar" value="Filtrar">
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm">
-                    <thead class="thead-light">
-                        <tr>
-                        <th>ID</th>
+    <div class="col-12">
+        <div class="col-12 table-responsive">
+            <table
+                class="table table-bordered table-hover table-sm dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                id="results_table" role="grid">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
                         <th>Títol</th>
                         <th>Descripció</th>
                         <th>Prioritat</th>
                         <th>Estat</th>
                         <th>Reportador</th>
                         <th>Assignat a</th>
-                        <th colspan="3">Acció</th>
-                        </tr>
-                    </thead>
+                        <th></th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach($incidencies as $incidencia)
                     <tr>
                         <td>{{ $incidencia->id }}</td>
-                        <td>{{ $incidencia->titol }}</td>
-                        <td>{{ $incidencia->descripcio }}</td>
+                        <td>{{ str_limit($incidencia->titol, $limit = 20, $end = '...') }}</td>
+                        <td>{{ str_limit($incidencia->descripcio, $limit = 20, $end = '...') }}</td>
                         <td>{{ $incidencia->nom_prioritat }}</td>
                         <td>{{ $incidencia->nom_estat }}</td>
                         <td>{{ $incidencia->nom_usuari_reportador }}</td>
                         <td>{{ $incidencia->nom_usuari_assignat }}</td>
-                        <td><a class="btn btn-success" href="{{ route('incidencies.show', $incidencia->id) }}">Mostrar</a></td>
-                        <td><a class="btn btn-primary" href="{{ route('incidencies.edit', $incidencia->id) }}">Modificar</a></td>
                         <td>
-                            <form action="{{ route('incidencies.destroy', $incidencia->id)}}" method="post"
-                            onsubmit="return confirm('Estàs segur de voler eliminar la incidència?');">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit" value="Eliminar">Eliminar</button>
-                            </form>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Accions">
+                                <a class="btn btn-success btn-sm"
+                                    href="{{ route('incidencies.show', $incidencia->id) }}">Mostrar</a>
+                                <a class="btn btn-primary btn-sm"
+                                    href="{{ route('incidencies.edit', $incidencia->id) }}">Modificar</a>
+
+                                <form action="{{ route('incidencies.destroy', $incidencia->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button id="confirm_delete" class="btn btn-danger btn-sm" type="submit"
+                                        value="Eliminar">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </main>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
 @endsection

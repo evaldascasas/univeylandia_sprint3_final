@@ -31,8 +31,8 @@
       </div>
 
       <div class="col-sm-3">
-        <h3>Truca'ns</h3>
-        <p>642 18 90 00</p>
+        <h3>Contacta</h3>
+        <span>642 18 90 00</span>
       </div>
 
       <div class="col-sm-3">

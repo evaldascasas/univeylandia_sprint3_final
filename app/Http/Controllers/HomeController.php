@@ -110,6 +110,11 @@ class HomeController extends Controller
       return view('pizzeria');
     }
 
+    public function faq()
+    {
+      return view('faq');
+    }
+
     public function incidencia()
     {
       $prioritats = PrioritatIncidencia::all();

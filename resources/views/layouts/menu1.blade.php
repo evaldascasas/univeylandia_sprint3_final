@@ -9,7 +9,7 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/img/mapa_parc.jpg">{{ __('Mapa') }}</a>
+        <a class="nav-link" href="{{ asset('img/mapa_parc.jpg') }}">{{ __('Mapa') }}</a>
       </li>
       @guest
       <li class="nav-item">
@@ -79,13 +79,14 @@
               @csrf
             </form>
           </li>
+
         </ul>
       </li>
       @endguest
       <li>
-        <button type="button" class="btn btn-default btn-sm" onclick="#">
-          <img src="/img/carrito.png">
-        </button>
+        <a class="btn btn-default btn-sm" href="#">
+          <i data-feather="shopping-cart"></i>
+        </a>
       </li>
     </ul>
   </div>

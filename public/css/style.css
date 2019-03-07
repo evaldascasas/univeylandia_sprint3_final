@@ -1,6 +1,20 @@
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    margin-top: 1px;
+}
+
+
 .dropdown-submenu {
   position: relative;
 }
+
+#logo-font {
+    font-size: 0.5em;
+}
+
 .dropdown-submenu a::after {
   transform: rotate(-90deg);
   position: absolute;
@@ -23,20 +37,19 @@
 .submenu{
   min-width: 0rem !important;
 }
+
 #hotel{
   margin-top: 30px;
   height: 300px;
   width: 400px;
 }
+
 #Gestiohotel{
   margin-top: 30px;
   height: 300px;
   width: 400px;
 }
 
-body{
-    margin-top: 10px;
-}
 
 .align-center, .center {
     text-align: center!important;
@@ -398,8 +411,6 @@ body{
     }
 }
 
-
-
 .itemdiv {
     padding-right: 3px;
     min-height: 66px
@@ -669,7 +680,6 @@ body{
     color: #777
 }
 
-
 .ace-thumbnails>li,
 .ace-thumbnails>li>:first-child {
     display: block;
@@ -873,7 +883,6 @@ body{
     }
 }
 
-
 .tab-content {
     border: 1px solid #C5D0DC;
     padding: 16px 12px;
@@ -1018,7 +1027,6 @@ body{
 .tab-content.padding-0 {
     padding: 0
 }
-
 
 .nav.nav-tabs.padding-28 {
     padding-left: 28px

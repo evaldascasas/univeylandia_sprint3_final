@@ -13,7 +13,6 @@
       <div> 
         <img margin="0px" src="/home/alumne/Documentos/univeylandia_sprint3_final/public/img/univeylandia_logo_petit.png">
       </div>
-    <br>
     <div class="row">
       <div class="col-12">
         <table class="table table-striped">

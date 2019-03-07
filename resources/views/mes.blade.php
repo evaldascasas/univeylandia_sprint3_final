@@ -24,7 +24,7 @@
     }
 </style>
 
-<div class="container jumbotron" style="margin-top:30px">
+<div id="principal" class="container jumbotron" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-12">
             <h1 class="font-weight-bold text-center text-uppercase">Coneix les tendes i restaurants del parc</h1>
@@ -51,6 +51,8 @@
 
     <input type="button" class="btn btn-outline-success" onclick="deleteNodes()" value="Borrar esta basura">
 
+    <input type="button" class="btn btn-outline-danger" onclick="removeListener()" value="Borrar listener">
+
 </div>
 
 <!-- DOM CREATE TABLE -->
@@ -70,17 +72,6 @@
     h4tag.style.color = "darkgrey";
 </script>
 
-<!-- US GET ELEMENT BY ID -->
-<script type="text/javascript">
-    document.write("<p>⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇</p>");
-    ptxt1 = document.getElementById("para1").innerHTML;
-    ptxt2 = document.getElementById("para2").innerHTML;
-    document.write("<p style='background:yellow'>" +
-        ptxt1.toUpperCase() + "</p>");
-    document.write("<p style='background:yellow'>" +
-        ptxt2.toUpperCase() + "</p>");
-</script>
-
 <!-- DOM: Insereix un node abans d'un altre node -->
 <script type="text/javascript">
     function insertMessage() {
@@ -89,7 +80,8 @@
         // If you copy this, don’t break the lines.
         newPara.appendChild(newText);
         var firstPara = document.getElementById("gelatilandia");
-        firstPara.insertBefore(newPara, firstPara);
+        var principal = document.getElementById('principal');
+        principal.insertBefore(newPara, firstPara);
 
         /* DOM: Crear una taula */
 
@@ -148,12 +140,37 @@
     window.onload = insertMessage();
     window.onload = tableCreate();
 
+
 </script>
 
 <script>
+    /* DOM removeChild */
     function deleteNodes() {
-        
+        var principal = document.getElementById('principal');
+        document.body.removeChild(principal);
     }
+</script>
+
+<script>
+    /* DOM EventListener */
+    var paragrafs = document.getElementsByTagName('P');
+
+    for (var i = 0; i < paragrafs.length; i++) {
+        paragrafs[i].addEventListener("dblclick", colorParagraphs);
+    }
+
+    function colorParagraphs() {
+        for (var i = 0; i < paragrafs.length; i++) {
+            paragrafs[i].style.backgroundColor = "red";
+        }
+    }
+
+    function removeListener() {
+        for (var i = 0; i < paragrafs.length; i++) {
+            paragrafs[i].removeEventListener("dblclick", colorParagraphs);
+        }
+    }
+
 </script>
 
 @endsection
