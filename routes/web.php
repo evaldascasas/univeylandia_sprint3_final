@@ -22,7 +22,7 @@
  Route::get('/mes', "HomeController@mes")->name('mes');
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
- 
+
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
 
@@ -35,6 +35,8 @@
  Route::resource('gestio/empleats', 'EmpleatsController')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/zones', 'ZonesController')->middleware(['auth','is_admin','verified']);
+
+Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/serveis', 'ServeisController')->middleware(['auth','is_admin','verified']);
 
@@ -50,7 +52,7 @@
  Route::post('/gestio/atraccions/image', 'AtraccionsController@store')->name('image.upload.post')->middleware(['auth','is_admin','verified']);
 
  Route::resource('/gestio/clients', 'ClientsController')->middleware(['auth','is_admin','verified']);
- 
+
  /* A SABER */
  //Route::get('/view/vustesoarc/atraccions', 'AtraccionsController@index');
 
