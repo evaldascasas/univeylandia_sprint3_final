@@ -61,7 +61,7 @@
               <a class="nav-link nav-interior {{ request()->routeIs('atraccions.index') ? 'active' : '' }}" href="{{URL::route('atraccions.index')}}"><span data-feather="file-text"></span>Gestionar Atraccions</a>
             </li>
           </ul>
-          
+
 
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('incidencies*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('incidencies*') ? 'true' : 'false' }}" href="#submenu5">
@@ -174,6 +174,23 @@
             </li>
             <li class="nav-item">
               <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Veure Imatges</a>
+            </li>
+          </ul>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('AssignEmpZona*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('AssignEmpZona*') ? 'true' : 'false' }}" href="#submenu12">
+              <span data-feather="truck"></span>
+              Gestionar Assignacions Empleat-Zona
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+
+          <ul class="nav flex-column collapse {{ request()->routeIs('AssignEmpZona*') ? 'show' : '' }}" id="submenu12" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('AssignEmpZona.create') ? 'active' : '' }}" href="{{  URL::route('AssignEmpZona.create')  }}"><span data-feather="plus-square"></span>Crear Assignació</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('AssignEmpZona.index') ? 'active' : '' }}" href="{{ URL::route('AssignEmpZona.index') }}"><span data-feather="file-text"></span>Gestionar Assignacions</a>
             </li>
           </ul>
 

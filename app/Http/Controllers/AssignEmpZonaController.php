@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use \App\Servei;
 use \App\User;
 use \App\Zona;
 use \App\AssignEmpZona;
@@ -17,9 +16,9 @@ class AssignEmpZonaController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  /*public function index()
+  public function index()
   {
-    $assignacions = DB::table('zones')->where('id_estat',2)
+    /*$assignacions = DB::table('zones')->where('id_estat',2)
     ->join ('serveis_zones','serveis_zones.id_zona', '=', 'zones.id')
     ->join('users', 'serveis_zones.id_empleat', '=', 'users.id')
     ->join('serveis', 'serveis_zones.id_servei', '=', 'serveis.id')
@@ -28,10 +27,20 @@ class AssignEmpZonaController extends Controller
       'zones.nom as nom_zona',
       'serveis.nom as nom_servei',
       'users.nom as nom_empleat'
+    ]);*/
+    $assignacions = DB::table('empleat_zona')
+    ->join ('zones','empleat_zona.id_zona', '=', 'zones.id')
+    ->join('users', 'empleat_zona.id_empleat', '=', 'users.id')
+    ->get ([
+      'empleat_zona.id as id',
+      'zones.nom as nom_zona',
+      'users.nom as nom_empleat',
+      'empleat_zona.data_inici as data_inici',
+      'empleat_zona.data_fi as data_fi'
     ]);
 
-    return view('gestio/zonesAssign/index', compact('assignacions'));
-  }*/
+    return view('gestio/AssignEmpZona/index', compact('assignacions'));
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -40,13 +49,12 @@ class AssignEmpZonaController extends Controller
    */
   public function create()
   {
-      $treballadors = User::where('id_rol',3)
+      $treballadors = User::where('id_rol',2)
       ->whereNotNull('email_verified_at')
       ->get();
 
       $zones = Zona::all();
-      $serveis = Servei::all();
-      return view('gestio/AssignEmpZona/create', compact('serveis','zones','treballadors'));
+      return view('gestio/AssignEmpZona/create', compact('zones','treballadors'));
   }
 
   /**
@@ -60,24 +68,21 @@ class AssignEmpZonaController extends Controller
 
     $request->validate([
         'seleccio_zona' => 'required',
-        'nom_servei' => 'required',
-        'data_inici_assign'=>'required',
-        'data_fi_assign'=>'required',
+        'data_inici_assign' => 'required',
+        'data_fi_assign' => 'required',
         'seleccio_empleat' => 'required'
     ]);
 
-    $servei_zona = new ServeisZones([
+    $assignEmpZona = new AssignEmpZona([
         'id_zona' => $request->get('seleccio_zona'),
-        'id_servei' => $request->get('nom_servei'),
         'id_empleat' => $request->get('seleccio_empleat'),
         'data_inici'=> $request->get('data_inici_assign'),
-        'data_fi'=> $request->get('data_fi_assign'),
-        'id_estat' => 2
+        'data_fi'=> $request->get('data_fi_assign')
     ]);
 
-    $servei_zona->save();
+    $assignEmpZona->save();
 
-    return redirect('/gestio/serveis')->with('success', 'Assignació creada correctament');
+    return redirect('/gestio/AssignEmpZona')->with('success', 'Assignació creada correctament');
   }
 
   /**
@@ -99,16 +104,14 @@ class AssignEmpZonaController extends Controller
    */
   public function edit($id)
   {
-    $assign = ServeisZones::find($id);
-
-    $treballadors = User::where('id_rol',3)
+    $treballadors = User::where('id_rol',2)
     ->whereNotNull('email_verified_at')
     ->get();
 
     $zones = Zona::all();
-    $serveis = Servei::all();
+    $assign = AssignEmpZona::find($id);
 
-    return view('gestio/serveis/edit', compact(['assign','serveis','zones','treballadors']));
+    return view('gestio/AssignEmpZona/edit', compact(['assign','zones','treballadors']));
   }
 
   /**
@@ -122,23 +125,20 @@ class AssignEmpZonaController extends Controller
   {
     $request->validate([
       'seleccio_zona' => 'required',
-      'nom_servei' => 'required',
       'data_inici_assign'=>'required',
       'data_fi_assign'=>'required',
       'seleccio_empleat' => 'required'
     ]);
 
-    $servei = ServeisZones::findOrFail($id);
+    $assign = AssignEmpZona::findOrFail($id);
 
-    $servei->id_zona = $request->get('seleccio_zona');
-    $servei->id_servei = $request->get('nom_servei');
-    $servei->id_empleat = $request->get('seleccio_empleat');
-    $servei->data_inici = $request->get('data_inici_assign');
-    $servei->data_fi = $request->get('data_fi_assign');
-    $servei->id_estat = 2;
-    $servei->save();
+    $assign->id_zona = $request->get('seleccio_zona');
+    $assign->id_empleat = $request->get('seleccio_empleat');
+    $assign->data_inici = $request->get('data_inici_assign');
+    $assign->data_fi = $request->get('data_fi_assign');
+    $assign->save();
 
-    return redirect('gestio/serveis')->with('success', 'Incidència editada correctament');
+    return redirect('gestio/AssignEmpZona')->with('success', 'Assignació editada correctament');
   }
 
   /**
@@ -149,10 +149,9 @@ class AssignEmpZonaController extends Controller
    */
   public function destroy($id)
   {
-    $servei = ServeisZones::findOrFail($id);
-    $servei->id_estat = 3;
-    $servei->save();
+    $assig = AssignEmpZona::findOrFail($id);
+    $assig->delete();
 
-    return redirect('gestio/serveis')->with('success', 'Servei eliminat correctament');
+    return redirect('gestio/AssignEmpZona')->with('success', 'Assignació eliminada correctament');
   }
 }

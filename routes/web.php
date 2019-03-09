@@ -36,7 +36,7 @@
 
  Route::resource('gestio/zones', 'ZonesController')->middleware(['auth','is_admin','verified']);
 
-Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
+ Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/serveis', 'ServeisController')->middleware(['auth','is_admin','verified']);
 
