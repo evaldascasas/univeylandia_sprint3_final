@@ -49,8 +49,10 @@ class AssignEmpZonaController extends Controller
    */
   public function create()
   {
-      $treballadors = User::where('id_rol',2)
+      $treballadors = User::where('id_rol','!==',1)
+      ->where('id_rol','!==',2)
       ->whereNotNull('email_verified_at')
+      ->whereNotNull('id_dades_empleat')
       ->get();
 
       $zones = Zona::all();
@@ -104,8 +106,10 @@ class AssignEmpZonaController extends Controller
    */
   public function edit($id)
   {
-    $treballadors = User::where('id_rol',2)
+    $treballadors = User::where('id_rol','!==',1)
+    ->where('id_rol','!==',2)
     ->whereNotNull('email_verified_at')
+    ->whereNotNull('id_dades_empleat')
     ->get();
 
     $zones = Zona::all();
