@@ -24,7 +24,6 @@
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
- Route::resource('/gestio/noticies', 'NoticiesController')->middleware(['auth','is_admin','verified']);
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
@@ -42,6 +41,8 @@
  Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/serveis', 'ServeisController')->middleware(['auth','is_admin','verified']);
+
+ Route::resource('/gestio/noticies', 'NoticiesController')->middleware(['auth','is_admin','verified']);
 
  Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
    $title = "Promoció X";
