@@ -9,6 +9,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
 use Auth;
+use View;
 
 use \App\Producte;
 use \App\Tipus_producte;
@@ -17,6 +18,8 @@ use \App\Cistella;
 use \App\Linia_cistella;
 use \App\Venta_productes;
 use \App\Linia_ventes;
+use \App\noticies;
+use \App\categories;
 
 class HomeController extends Controller
 {
@@ -38,7 +41,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+      $noticies = DB::table('noticies')
+        ->join('users', 'users.id', '=', 'noticies.id_usuari')
+        ->join('categories', 'categories.id', '=', 'noticies.categoria')
+        ->select('noticies.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img', 'categories.nom as categoria', 'categories.id as catId')
+        ->orderBy('id', 'DESC')
+        ->paginate(2);
+        return view('index', compact('noticies'));
     }
 
     public function noticies()
@@ -307,6 +316,42 @@ class HomeController extends Controller
 
       return view("/tenda_figures");
 
+    }
+    
+    public function noticia(Request $request)
+    {
+        $valid = 0;
+        if (Auth::check()) {
+          $user = User::find(Auth::id());
+          if ($user->id_rol == 2) {
+            $valid = 1;
+          }
+        }
+        $noticia = noticies::find($request->get('id'));
+        $categoria = categories::find($noticia->categoria);
+        return view("/noticia", compact('noticia', 'categoria', 'valid'));
+    }
+    
+    public function noticies(Request $request)
+    {
+      $noticies = DB::table('noticies')
+        ->join('users', 'users.id', '=', 'noticies.id_usuari')
+        ->join('categories', 'categories.id', '=', 'noticies.categoria')
+        ->select('noticies.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img', 'categories.nom as categoria', 'categories.id as catId')
+        ->orderBy('id', 'DESC')
+
+        ->where(function ($noticies) use ($request) {
+          if ($request->has('catId')) {
+            $cat = $request->get('catId');
+            $noticies->where('categories.id', '=', $cat);
+          }else {
+            $cat = "";
+          }
+        })
+
+        //$noticies->where('categories.id', '=', $cat);
+        ->paginate(8);
+      return view('noticies', compact('noticies'));
     }
 
 }
