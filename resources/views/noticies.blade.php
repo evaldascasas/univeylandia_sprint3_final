@@ -4,130 +4,40 @@
 @endsection
 @section("menu2")
 @endsection
-@section("body")
+@section("content")
 <!-- NOTICIES -->
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-12">
-      <h1 class="font-weight-bold text-center text-uppercase">noticies</1>
+      <a href="/noticies" style="text-decoration: none;color:black;"> <h1 class="font-weight-bold text-center text-uppercase">noticies</h1> </a>
     </div>
   </div>
   <div class="row">
+    @forelse($noticies as $noticia)
     <div class="col-sm-6">
       <div class="card flex-md-row mb-4 box-shadow h-md-250">
         <div class="card-body d-flex flex-column align-items-start">
-          <strong class="d-inline-block mb-2 text-success">Hotel</strong>
+          <form method="get">
+            <input type="hidden" name="catId" value="{{$noticia->catId}}">
+            <button class="d-inline-block mb-2 text-success" type="submit" style="background: none;border: none;">{{$noticia->categoria}}</button>
+          </form>
           <h3 class="mb-0">
-            <a class="text-dark" href="#">Noves habitacions</a>
+            <a class="text-dark">{{$noticia->titol}}</a>
           </h3>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-              <a href="#">Continuar llegint</a>
+            <p class="card-text mb-auto">{!!html_entity_decode(str_limit($noticia->descripcio, $limit=200, $end = "..."))!!}</p>
+            <form action="{{ route('noticia',$noticia->id)}}" method="get">
+              <input type="hidden" name="id" value="{{$noticia->id}}">
+              <button type="submit" class="btn btn-outline-info">Continuar llegint</button>
+            </form>
           </div>
-          <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
+          <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px;height: 300px;" src="{{$noticia->path_img}}">
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Atraccions</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Post title</a>
-        </h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continue reading</a>
-        </div>
-        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-      </div>
-  </div>
+  @empty
+  <p style="background-color: #e05e5e;text-align: center;font-weight: bold;"> No hi han noticies a llistar</p>
+  @endforelse
 </div>
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Hotel</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Noves habitacions</a>
-        </h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continuar llegint</a>
-        </div>
-        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-  </div>
-</div>
-<div class="col-sm-6">
-  <div class="card flex-md-row mb-4 box-shadow h-md-250">
-    <div class="card-body d-flex flex-column align-items-start">
-      <strong class="d-inline-block mb-2 text-success">Atraccions</strong>
-      <h3 class="mb-0">
-        <a class="text-dark" href="#">Post title</a>
-      </h3>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continue reading</a>
-      </div>
-      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-    </div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Hotel</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Noves habitacions</a>
-        </h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continuar llegint</a>
-        </div>
-        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-  </div>
-</div>
-<div class="col-sm-6">
-  <div class="card flex-md-row mb-4 box-shadow h-md-250">
-    <div class="card-body d-flex flex-column align-items-start">
-      <strong class="d-inline-block mb-2 text-success">Atraccions</strong>
-      <h3 class="mb-0">
-        <a class="text-dark" href="#">Post title</a>
-      </h3>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continue reading</a>
-      </div>
-      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-    </div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Hotel</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Noves habitacions</a>
-        </h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continuar llegint</a>
-        </div>
-        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-  </div>
-</div>
-<div class="col-sm-6">
-  <div class="card flex-md-row mb-4 box-shadow h-md-250">
-    <div class="card-body d-flex flex-column align-items-start">
-      <strong class="d-inline-block mb-2 text-success">Atraccions</strong>
-      <h3 class="mb-0">
-        <a class="text-dark" href="#">Post title</a>
-      </h3>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continue reading</a>
-      </div>
-      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px; height: 250px;" src="../img/slider1.jpg">
-    </div>
-  </div>
-</div>
-</div>
+<div style="display: table;margin: 0 auto;"> {{ $noticies->links() }} </div>
 
 @endsection
 @section("footer")
