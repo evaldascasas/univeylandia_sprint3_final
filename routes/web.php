@@ -13,6 +13,7 @@
  Route::get('/',"HomeController@index")->name('home');
  Route::get('/contacte','HomeController@contacte')->name('contacte');
  Route::get('/noticies',"HomeController@noticies")->name('noticies');
+ Route::get('/noticies/n',"HomeController@noticia")->name('noticia');
  Route::get('/promocions',"HomeController@promocions")->name('promocions');
  Route::get('/atraccions',"HomeController@atraccions")->name('atraccions');
  Route::get('/entrades',"HomeController@entrades")->name('entrades');
@@ -23,6 +24,7 @@
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
+ Route::resource('/gestio/noticies', 'NoticiesController')->middleware(['auth','is_admin','verified']);
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
