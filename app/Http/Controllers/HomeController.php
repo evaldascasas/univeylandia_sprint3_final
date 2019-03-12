@@ -115,6 +115,11 @@ class HomeController extends Controller
       return view('faq');
     }
 
+    public function multimedia()
+    {
+      return view('multimedia');
+    }
+
     public function incidencia()
     {
       $prioritats = PrioritatIncidencia::all();

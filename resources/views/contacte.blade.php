@@ -39,7 +39,7 @@
         <label>Missatge</label>
         <textarea type="text" class="form-control" id="exampleInputText1" placeholder="Escriu el teu missatge..." required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Envia</button>
+      <button type="submit" class="btn btn-primary" value="Envia">Envia</button>
     </div>
   </form>
 </div>
