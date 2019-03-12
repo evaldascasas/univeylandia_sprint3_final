@@ -52,32 +52,26 @@
     </div>
   </div>
   <div class="row">
+    @forelse($noticies as $noticia)
     <div class="col-sm-6">
       <div class="card flex-md-row mb-4 box-shadow h-md-250">
         <div class="card-body d-flex flex-column align-items-start">
-          <strong class="d-inline-block mb-2 text-success">Hotel</strong>
+            <button class="d-inline-block mb-2 text-success" type="submit" style="background: none;border: none;">{{$noticia->categoria}}</button>
           <h3 class="mb-0">
-            <a class="text-dark" href="#">Noves habitacions</a>
+            <a class="text-dark">{{$noticia->titol}}</a>
           </h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continuar llegint</a>
-        </div>
-      <img class="card-img-right flex-auto d-none d-md-block" alt="Imatge noticia" style="width: 200px; height: 250px;" src="/img/slider1.jpg">
+            <p class="card-text mb-auto">{!!html_entity_decode(str_limit($noticia->descripcio, $limit=200, $end = "..."))!!}</p>
+            <form action="{{ route('noticia',$noticia->id)}}" method="get">
+              <input type="hidden" name="id" value="{{$noticia->id}}">
+              <button type="submit" class="btn btn-outline-info">Continuar llegint</button>
+            </form>
+          </div>
+          <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="imatge de la noticia" style="width: 200px;height: 300px;" src="{{$noticia->path_img}}">
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Atraccions</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Post title</a>
-        </h3>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <a href="#">Continue reading</a>
-      </div>
-      <img class="card-img-right flex-auto d-none d-md-block" alt="Imatge noticia" style="width: 200px; height: 250px;" src="/img/slider1.jpg">
-    </div>
-  </div>
+  @empty
+  <p style="background-color: #e05e5e;text-align: center;font-weight: bold;"> No hi han noticies a llistar</p>
+  @endforelse
 </div>
 <!-- FI NOTICIES -->
 
