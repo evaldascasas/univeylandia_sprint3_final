@@ -49,11 +49,6 @@ class HomeController extends Controller
         ->paginate(2);
         return view('index', compact('noticies'));
     }
-
-    public function noticies()
-    {
-      return view('noticies');
-    }
   
     public function promocions()
     {

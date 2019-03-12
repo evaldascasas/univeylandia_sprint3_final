@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TipusProducteSeeder::class,
             ZonesSeeder::class,
             Empleat_zona::class,
+            CategoriesSeeder::class,
         ]);
     }
 }
