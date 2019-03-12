@@ -484,6 +484,7 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
         'App\\Http\\Controllers\\IncidenciesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IncidenciesController.php',
+        'App\\Http\\Controllers\\NoticiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/NoticiesController.php',
         'App\\Http\\Controllers\\ServeisController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServeisController.php',
         'App\\Http\\Controllers\\VentesController' => __DIR__ . '/../..' . '/app/Http/Controllers/VentesController.php',
         'App\\Http\\Controllers\\ZonesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ZonesController.php',

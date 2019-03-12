@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\ImageController' => $baseDir . '/app/Http/Controllers/ImageController.php',
     'App\\Http\\Controllers\\IncidenciesController' => $baseDir . '/app/Http/Controllers/IncidenciesController.php',
+    'App\\Http\\Controllers\\NoticiesController' => $baseDir . '/app/Http/Controllers/NoticiesController.php',
     'App\\Http\\Controllers\\ServeisController' => $baseDir . '/app/Http/Controllers/ServeisController.php',
     'App\\Http\\Controllers\\VentesController' => $baseDir . '/app/Http/Controllers/VentesController.php',
     'App\\Http\\Controllers\\ZonesController' => $baseDir . '/app/Http/Controllers/ZonesController.php',

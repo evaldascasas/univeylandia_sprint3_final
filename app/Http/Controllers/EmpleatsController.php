@@ -79,7 +79,7 @@ class EmpleatsController extends Controller
      */
     public function store(Request $request)
     {
-        $randomPass = str_random(8);
+        //$randomPass = str_random(8);
 
         $dadesEmpleat = new DadesEmpleat([
             'codi_seg_social' => $request->get('codi_seg_social'),
@@ -99,7 +99,8 @@ class EmpleatsController extends Controller
             'cognom1' => $request->get('cognom1'),
             'cognom2' => $request->get('cognom2'),
             'email' => $request->get('email'),
-            'password' => Hash::make($randomPass),
+            //'password' => Hash::make($randomPass),
+            'password' => Hash::make('secret'),
             'data_naixement' => $request->get('data_naixement'),
             'adreca' => $request->get('adreca'),
             'ciutat' => $request->get('ciutat'),

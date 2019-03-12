@@ -24,6 +24,9 @@
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
+ Route::get('/read/{id}', function() {
+   $notification->markAsRead();
+ })->name('read');
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
