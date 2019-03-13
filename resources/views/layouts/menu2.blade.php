@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark py-2">
-    <a class="navbar-brand" href="{{ route('home') }}">
+    <a class="navbar-brand" href="{{ route('home') }}" accesskey="h"> <!-- Alt + Shift + h = anar a inici -->
         <img src="{{ asset('img/univeylandia_logo_petit_blanc.png') }}">
         <!--<span id="logo-font">El millor parc de les Terres de l'Ebre</span>-->
     </a>
