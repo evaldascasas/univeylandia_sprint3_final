@@ -24,9 +24,7 @@
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
- Route::get('/read/{id}', function() {
-   $notification->markAsRead();
- })->name('read');
+ Route::patch('/notification-read/{id}', 'NotificationsController@destroy')->name('markasread')->middleware(['auth','verified']);
  
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
