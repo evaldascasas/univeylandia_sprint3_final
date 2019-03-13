@@ -25,6 +25,7 @@ class CreateAtraccioTable extends Migration
             $table->boolean('acces_express');
             $table->text('descripcio');
             $table->string('path');
+            $table->string('votacions')->default('0');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
