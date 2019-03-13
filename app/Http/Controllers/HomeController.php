@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Carbon\Carbon;
 
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
@@ -20,6 +21,7 @@ use \App\Venta_productes;
 use \App\Linia_ventes;
 use \App\noticies;
 use \App\categories;
+use \App\Votacio_user_atraccio;
 
 class HomeController extends Controller
 {
@@ -347,6 +349,51 @@ class HomeController extends Controller
         //$noticies->where('categories.id', '=', $cat);
         ->paginate(8);
       return view('noticies', compact('noticies'));
+    }
+    
+    public function votacions()
+    {
+      $atraccions = json_encode(DB::table('atraccions')
+        ->select('atraccions.id as id', 'atraccions.nom_atraccio as title', 'atraccions.descripcio as description', 'atraccions.path as url', 'atraccions.votacions as votes', 'atraccions.path as avatar', 'atraccions.path as submissionImage')
+        ->orderBy('id', 'DESC')
+        ->get());
+        return view('votacions', compact('atraccions'));
+    }
+
+    public function votacio_accio(Request $request)
+    {
+      if (Auth::check()) {
+
+        if (Votacio_user_atraccio::where('id_usuari', '=', Auth::id())->whereBetween('created_at', array(Carbon::now()->subDays(365)->toDateTimeString(), Carbon::now()->toDateTimeString()))->count() > 0) {
+          return redirect('/votacions')->with('error', 'Les votacions son anuals.');
+        }else {
+          $atraccio_votar = Atraccion::find($request->get('id_atraccio'));
+
+          $votacio_actualitzat = $atraccio_votar->votacions + 1;
+
+
+          DB::table('atraccions')
+              ->where('id', $request->get('id_atraccio'))
+              ->update(['votacions' => $votacio_actualitzat]);
+
+          $votacio = new Votacio_user_atraccio([
+              'id_usuari' => Auth::id(),
+              'id_atraccio' => $request->get('id_atraccio')
+          ]);
+          $votacio->save();
+
+          return redirect('/votacions')->with('success', 'Votació realitzada correctament');
+
+          /*$atraccions = json_encode(DB::table('atraccions')
+            ->select('atraccions.id as id', 'atraccions.nom_atraccio as title', 'atraccions.descripcio as description', 'atraccions.path as url', 'atraccions.votacions as votes', 'atraccions.path as avatar', 'atraccions.path as submissionImage')
+            ->orderBy('id', 'DESC')
+            ->get());
+            return view('votacions', compact('atraccions'));*/
+        }
+      }else{
+        return redirect('/votacions')->with('error', 'És necessari iniciar sessió per votar.');
+      }
+
     }
 
 }
