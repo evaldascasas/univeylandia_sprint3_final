@@ -52,6 +52,10 @@
    return view ('/promocio_x', compact('title'));
  }]);
 
+ Route::get('/votacions',"HomeController@votacions")->name('votacions');
+
+ Route::post('/votacions',"HomeController@votacio_accio")->name('votacio_accio');
+
  /* RUTES GRUP 2 */
  Route::resource('/gestio/atraccions', 'AtraccionsController')->middleware(['auth','is_admin','verified']);
 
