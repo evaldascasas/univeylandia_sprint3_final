@@ -22,6 +22,7 @@ use \App\Linia_ventes;
 use \App\noticies;
 use \App\categories;
 use \App\Votacio_user_atraccio;
+use \App\Atraccion;
 
 class HomeController extends Controller
 {

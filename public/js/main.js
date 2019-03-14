@@ -14,9 +14,6 @@ const submissionComponent = {
               </a>
               <!-- <span class="tag is-small">#{{ submission.id }}</span> -->
             </strong>
-            <br>
-              {{ submission.description }}
-            <br>
 
           </p>
         </div>
