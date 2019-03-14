@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+
 use \App\Servei;
 use \App\User;
 use \App\Zona;
@@ -19,7 +19,7 @@ class ServeisController extends Controller
      */
     public function index()
     {
-      $assignacions = DB::table('zones')->where('id_estat',2)
+      $assignacions = Zona::where('id_estat',2)
       ->join ('serveis_zones','serveis_zones.id_zona', '=', 'zones.id')
       ->join('users', 'serveis_zones.id_empleat', '=', 'users.id')
       ->join('serveis', 'serveis_zones.id_servei', '=', 'serveis.id')
