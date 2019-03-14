@@ -26,7 +26,8 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">Més</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                <li><a class="dropdown-item" href="{{ route('multimedia')}}">Multimèdia</a></li>
+                    <li><a class="dropdown-item" href="{{ route('votacions')}}">Top atraccions</a></li>
+                    <li><a class="dropdown-item" href="{{ route('multimedia')}}">Multimèdia</a></li>
                     <li><a class="dropdown-item" href="{{ route('mes')}}">Botigues i restaurants</a></li>
                 </ul>
             </li>

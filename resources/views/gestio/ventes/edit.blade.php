@@ -5,13 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-<div class="uper">
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}
-    </div><br />
-  @endif
+
 
   <table class="table table-striped">
     <thead>
@@ -36,14 +30,16 @@
             @else
             <td>{{$venta->tickets_viatges}}</td>
             @endif
-            <td><a href="#" data-toggle="modal" data-target="#exampleModal{{$venta->id}}">{{$venta->foto_path}}</a></td>
+            <td>
+              <a href="#" data-toggle="modal" data-target="#exampleModal{{$venta->id}}">{{$venta->foto_path}}</a>
+            </td>
             @if (! is_null($venta->foto_path))
             <!-- MODAL FOTO -->
             <div class="modal fade" id="exampleModal{{$venta->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content" style="width:120%;">
-                  <div class="modal-body">
-                    <img src="{{ asset($venta->foto_path) }}" style="display:block;margin:auto;width:100%">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body align-self-center">
+                    <img src="{{ asset($venta->foto_path) }}">
                   </div>
                 </div>
               </div>
@@ -69,6 +65,6 @@
         <td>{{$venta->preu_total}}€</td>
     </tr>
   </table>
-<a href="{{ url()->previous() }}" class="btn btn-primary" style="float: right;">Enrere</a>
+<a href="{{ url()->previous() }}" class="btn btn-outline-secondary" style="float: right;">Enrere</a>
 
 @endsection

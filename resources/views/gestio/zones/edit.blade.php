@@ -10,7 +10,7 @@
     margin-top: 40px;
   }
 </style>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
 <div class="card uper">
   <div class="card-header">
     Editar Zona: {{ $zona->nom }}

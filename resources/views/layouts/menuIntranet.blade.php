@@ -137,25 +137,24 @@
             </li>
           </ul>
 
-
           <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('ventes*') ? 'active' : '' }}" href="{{  URL::route('ventes.index')  }}"><span data-feather="truck"></span> Ventes</a>
+            <a class="nav-link {{ request()->routeIs('ventes*') ? 'active' : '' }}" href="{{  route('ventes.index')  }}"><span data-feather="truck"></span> Ventes</a>
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#submenu10">
+            <a class="nav-link {{ request()->routeIs('noticies*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="false" href="#submenu10">
               <span data-feather="alert-triangle"></span>
               Notícies
               <span data-feather="chevron-right"></span>
             </a>
           </li>
-          <ul class="nav flex-column collapse" id="submenu10" data-parent="#sidebar">
+          <ul class="nav flex-column collapse {{ request()->routeIs('noticies*') ? 'show' : '' }}" id="submenu10" data-parent="#sidebar">
             <li class="nav-item">
-              <a class="nav-link nav-interior" href="#"><span data-feather="user-plus"></span>Crear Noticia</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('noticies.create*') ? 'active' : '' }}" href="{{ route('noticies.create') }}"><span data-feather="user-plus"></span>Crear Noticia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Gestionar Noticia</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('noticies.index') ? 'active' : '' }}" href="{{ route('noticies.index') }}"><span data-feather="file-text"></span>Gestionar Notícies</a>
             </li>
           </ul>
 

@@ -5,7 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
 
   @if(session()->get('success'))
   <div class="uper">
@@ -82,5 +82,5 @@
     </tbody>
   </table>
 </div>
-</main>
+
 @endsection

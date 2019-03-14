@@ -5,7 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Modificar empleat: {{ $user->nom }} {{ $user->cognom1 }} {{ $user->congom2 }}</h1>
     </div>
@@ -110,8 +110,8 @@
                 <input type="text" class="form-control form-control-sm" name="id_horari" value="{{ $dades->id_horari }}">
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" value="Modificar">Modificar</button>
-        <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel·lar</a>
+        <button class="btn btn-outline-primary" type="submit" value="Modificar">Modificar</button>
+        <a href="{{ URL::previous() }}" class="btn btn-outline-secondary">Cancel·lar</a>
     </form>
-</main>
+
 @endsection

@@ -5,7 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Gestio d'Empleats - Inserir</h1>
           </div>
@@ -45,5 +45,5 @@
             <button class="btn btn-primary" type="submit" value="Crear">Crear</button>
             <button class="btn btn-secondary" type="reset" value="Cancel·lar">Cancel·lar</button>
          </form>
-        </main>
+        
 @endsection
