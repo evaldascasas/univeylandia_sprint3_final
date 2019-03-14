@@ -320,11 +320,12 @@ class HomeController extends Controller
     {
         $valid = 0;
         if (Auth::check()) {
-          $user = User::find(Auth::id());
+          $user = Auth::user();
           if ($user->id_rol == 2) {
             $valid = 1;
           }
         }
+
         $noticia = noticies::find($request->get('id'));
         $categoria = categories::find($noticia->categoria);
         return view("/noticia", compact('noticia', 'categoria', 'valid'));
