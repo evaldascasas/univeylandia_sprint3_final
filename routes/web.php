@@ -38,6 +38,8 @@
 
 Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
 
+Route::resource('gestio/GestioServeis', 'GestioServeisController')->middleware(['auth','is_admin','verified']);
+
  Route::resource('gestio/serveis', 'ServeisController')->middleware(['auth','is_admin','verified']);
 
  Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
