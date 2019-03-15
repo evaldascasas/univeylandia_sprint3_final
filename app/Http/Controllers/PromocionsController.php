@@ -110,6 +110,7 @@ class PromocionsController extends Controller
     {
       $promocio = Promocions::find($id);
       $promocio->titol = $request->get('titol');
+      $promocio->descripcio = $request->get('descripcio');
       if ($request->has('image')) {
         $image_path = public_path().$promocio->path_img;
         if(File::exists($image_path)) {
