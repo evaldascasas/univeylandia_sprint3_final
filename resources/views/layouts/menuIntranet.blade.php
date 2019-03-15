@@ -194,6 +194,23 @@
           </ul>
 
 
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#submenu13">
+              <span data-feather="alert-triangle"></span>
+              Promocions
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+          <ul class="nav flex-column collapse" id="submenu13" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior" href="#"><span data-feather="user-plus"></span>Crear Promoció</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Gestionar Promocions</a>
+            </li>
+          </ul>
+
+
         </ul>
       </div>
     </nav>

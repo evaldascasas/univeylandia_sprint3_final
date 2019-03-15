@@ -25,7 +25,7 @@
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
  Route::patch('/notification-read/{id}', 'NotificationsController@destroy')->name('markasread')->middleware(['auth','verified']);
- 
+
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
 
@@ -47,10 +47,12 @@ Route::resource('gestio/GestioServeis', 'GestioServeisController')->middleware([
 
  Route::resource('/gestio/noticies', 'NoticiesController')->middleware(['auth','is_admin','verified']);
 
- Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
+ Route::resource('/gestio/promocions', 'PromocionsController')->middleware(['auth','is_admin','verified']);
+
+ /*Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
    $title = "Promoció X";
    return view ('/promocio_x', compact('title'));
- }]);
+ }]);*/
 
  Route::get('/votacions',"HomeController@votacions")->name('votacions');
 
