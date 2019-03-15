@@ -16,6 +16,7 @@ class Atraccion extends Model
     'accessibilitat',
     'acces_express',
     'descripcio',
+    'votacions',
     'path'
   ];
 }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Carbon\Carbon;
 
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
 use Auth;
+use View;
 
 use \App\Producte;
 use \App\Tipus_producte;
@@ -17,6 +19,10 @@ use \App\Cistella;
 use \App\Linia_cistella;
 use \App\Venta_productes;
 use \App\Linia_ventes;
+use \App\noticies;
+use \App\categories;
+use \App\Votacio_user_atraccio;
+use \App\Atraccion;
 
 class HomeController extends Controller
 {
@@ -38,12 +44,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
-    }
-
-    public function noticies()
-    {
-      return view('noticies');
+      $noticies = DB::table('noticies')
+        ->join('users', 'users.id', '=', 'noticies.id_usuari')
+        ->join('categories', 'categories.id', '=', 'noticies.categoria')
+        ->select('noticies.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img', 'categories.nom as categoria', 'categories.id as catId')
+        ->orderBy('id', 'DESC')
+        ->paginate(2);
+        return view('index', compact('noticies'));
     }
   
     public function promocions()
@@ -113,6 +120,11 @@ class HomeController extends Controller
     public function faq()
     {
       return view('faq');
+    }
+
+    public function multimedia()
+    {
+      return view('multimedia');
     }
 
     public function incidencia()
@@ -301,6 +313,88 @@ class HomeController extends Controller
     public function tenda_figures(){
 
       return view("/tenda_figures");
+
+    }
+    
+    public function noticia(Request $request)
+    {
+        $valid = 0;
+        if (Auth::check()) {
+          $user = Auth::user();
+          if ($user->id_rol == 2) {
+            $valid = 1;
+          }
+        }
+
+        $noticia = noticies::find($request->get('id'));
+        $categoria = categories::find($noticia->categoria);
+        return view("/noticia", compact('noticia', 'categoria', 'valid'));
+    }
+    
+    public function noticies(Request $request)
+    {
+      $noticies = DB::table('noticies')
+        ->join('users', 'users.id', '=', 'noticies.id_usuari')
+        ->join('categories', 'categories.id', '=', 'noticies.categoria')
+        ->select('noticies.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img', 'categories.nom as categoria', 'categories.id as catId')
+        ->orderBy('id', 'DESC')
+
+        ->where(function ($noticies) use ($request) {
+          if ($request->has('catId')) {
+            $cat = $request->get('catId');
+            $noticies->where('categories.id', '=', $cat);
+          }else {
+            $cat = "";
+          }
+        })
+
+        //$noticies->where('categories.id', '=', $cat);
+        ->paginate(8);
+      return view('noticies', compact('noticies'));
+    }
+    
+    public function votacions()
+    {
+      $atraccions = json_encode(DB::table('atraccions')
+        ->select('atraccions.id as id', 'atraccions.nom_atraccio as title', 'atraccions.descripcio as description', 'atraccions.path as url', 'atraccions.votacions as votes', 'atraccions.path as avatar', 'atraccions.path as submissionImage')
+        ->orderBy('id', 'DESC')
+        ->get());
+        return view('votacions', compact('atraccions'));
+    }
+
+    public function votacio_accio(Request $request)
+    {
+      if (Auth::check()) {
+
+        if (Votacio_user_atraccio::where('id_usuari', '=', Auth::id())->whereBetween('created_at', array(Carbon::now()->subDays(365)->toDateTimeString(), Carbon::now()->toDateTimeString()))->count() > 0) {
+          return redirect('/votacions')->with('error', 'Les votacions son anuals.');
+        }else {
+          $atraccio_votar = Atraccion::find($request->get('id_atraccio'));
+
+          $votacio_actualitzat = $atraccio_votar->votacions + 1;
+
+
+          DB::table('atraccions')
+              ->where('id', $request->get('id_atraccio'))
+              ->update(['votacions' => $votacio_actualitzat]);
+
+          $votacio = new Votacio_user_atraccio([
+              'id_usuari' => Auth::id(),
+              'id_atraccio' => $request->get('id_atraccio')
+          ]);
+          $votacio->save();
+
+          return redirect('/votacions')->with('success', 'Votació realitzada correctament');
+
+          /*$atraccions = json_encode(DB::table('atraccions')
+            ->select('atraccions.id as id', 'atraccions.nom_atraccio as title', 'atraccions.descripcio as description', 'atraccions.path as url', 'atraccions.votacions as votes', 'atraccions.path as avatar', 'atraccions.path as submissionImage')
+            ->orderBy('id', 'DESC')
+            ->get());
+            return view('votacions', compact('atraccions'));*/
+        }
+      }else{
+        return redirect('/votacions')->with('error', 'És necessari iniciar sessió per votar.');
+      }
 
     }
 

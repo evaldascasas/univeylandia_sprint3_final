@@ -43,19 +43,15 @@
   <!-- Icon -->
   <link rel="icon" href="{{ asset('img/icon.png') }}" type="image/gif">
 
-  <!--<style>
-  .fakeimg {
-      height: 200px;
-      background: #aaa;
-  }
-  </style>-->
 </head>
 <body>
     @include("layouts.navbarIntranet")
     @yield("navbarIntranet")
     @include("layouts.menuIntranet")
     @yield("menuIntranet")
+    <main role="main" class="col-md-10 ml-sm-auto px-4 mb-3">
     @yield("content")
+    </main>
 
   <!-- Feather icons & Datatables -->
   <script src="{{ asset('js/scripts.js') }}"></script>

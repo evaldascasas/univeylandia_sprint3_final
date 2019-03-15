@@ -42,9 +42,8 @@
                 <option value=6>6</option>
             </select>
         </div>
-        <p> Preu total: AJAX :D </p>
-        <button class="btn btn-primary" type="submit">Comprar</button>
-        <a href="{{ URL::previous() }}" class="btn btn-primary">Cancel·lar</a>
+        <button class="btn btn-success" type="submit">Comprar</button>
+        <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel·lar</a>
     </form>
 </div>
 <script>

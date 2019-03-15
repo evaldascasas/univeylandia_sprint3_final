@@ -13,6 +13,7 @@
  Route::get('/',"HomeController@index")->name('home');
  Route::get('/contacte','HomeController@contacte')->name('contacte');
  Route::get('/noticies',"HomeController@noticies")->name('noticies');
+ Route::get('/noticies/n',"HomeController@noticia")->name('noticia');
  Route::get('/promocions',"HomeController@promocions")->name('promocions');
  Route::get('/atraccions',"HomeController@atraccions")->name('atraccions');
  Route::get('/entrades',"HomeController@entrades")->name('entrades');
@@ -22,7 +23,9 @@
  Route::get('/mes', "HomeController@mes")->name('mes');
  Route::get('/pizzeria',"HomeController@pizzeria")->name('pizzeria');
  Route::get('/faq',"HomeController@faq")->name('faq');
-
+ Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
+ Route::patch('/notification-read/{id}', 'NotificationsController@destroy')->name('markasread')->middleware(['auth','verified']);
+ 
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
 
@@ -36,16 +39,22 @@
 
  Route::resource('gestio/zones', 'ZonesController')->middleware(['auth','is_admin','verified']);
 
-Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
+ Route::resource('gestio/AssignEmpZona', 'AssignEmpZonaController')->middleware(['auth','is_admin','verified']);
 
 Route::resource('gestio/GestioServeis', 'GestioServeisController')->middleware(['auth','is_admin','verified']);
 
  Route::resource('gestio/serveis', 'ServeisController')->middleware(['auth','is_admin','verified']);
 
+ Route::resource('/gestio/noticies', 'NoticiesController')->middleware(['auth','is_admin','verified']);
+
  Route::get('promocions/promocio_x', ['as' => 'promocio_x', function(){
    $title = "Promoció X";
    return view ('/promocio_x', compact('title'));
  }]);
+
+ Route::get('/votacions',"HomeController@votacions")->name('votacions');
+
+ Route::post('/votacions',"HomeController@votacio_accio")->name('votacio_accio');
 
  /* RUTES GRUP 2 */
  Route::resource('/gestio/atraccions', 'AtraccionsController')->middleware(['auth','is_admin','verified']);

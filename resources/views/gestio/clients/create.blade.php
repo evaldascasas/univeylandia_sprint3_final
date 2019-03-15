@@ -5,7 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-2 py-4"style="margin-top:50px">
+
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
      <h1 class="h2">Crear client</h1>
    </div>
@@ -99,24 +99,8 @@
        </div>
      </div>
 
-     <button class="btn btn-primary" type="submit" value="Guardar">Crear</button>
-     <button class="btn btn-secondary" type="reset">Cancel·lar</button>
+     <button class="btn btn-outline-success" type="submit" value="Guardar">Crear</button>
+     <button class="btn btn-outline-secondary" type="reset">Cancel·lar</button>
    </form>
-
-   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-     <h1 class="h2">Crear clients de forma massiva</h1>
-   </div>
-
-   <form>
-     <div class="form-group">
-       <div class="form-row">
-         <div class="col-md-3 mb-3">
-           <label for="exampleFormControlFile1">Pujar arxiu .CSV amb dades de clients</label>
-           <input type="file" class="form-control-file" id="exampleFormControlFile1">
-         </div>
-       </div>
-     </div>
-   </form>
-
- </main>
+ 
  @endsection

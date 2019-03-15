@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark py-2">
-    <a class="navbar-brand" href="{{ route('home') }}">
+    <a class="navbar-brand" href="{{ route('home') }}" accesskey="h"> <!-- Alt + Shift + h = anar a inici -->
         <img src="{{ asset('img/univeylandia_logo_petit_blanc.png') }}">
         <!--<span id="logo-font">El millor parc de les Terres de l'Ebre</span>-->
     </a>
@@ -26,6 +26,8 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">Més</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                    <li><a class="dropdown-item" href="{{ route('votacions')}}">Top atraccions</a></li>
+                    <li><a class="dropdown-item" href="{{ route('multimedia')}}">Multimèdia</a></li>
                     <li><a class="dropdown-item" href="{{ route('mes')}}">Botigues i restaurants</a></li>
                 </ul>
             </li>

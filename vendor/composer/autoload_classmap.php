@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\AssignEmpZona' => $baseDir . '/app/AssignEmpZona.php',
     'App\\Atraccion' => $baseDir . '/app/Atraccion.php',
     'App\\Atributs_producte' => $baseDir . '/app/Atributs_producte.php',
     'App\\Cistella' => $baseDir . '/app/Cistella.php',
@@ -13,6 +14,8 @@ return array(
     'App\\DadesEmpleat' => $baseDir . '/app/DadesEmpleat.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Horari' => $baseDir . '/app/Horari.php',
+    'App\\Http\\Controllers\\AssignController' => $baseDir . '/app/Http/Controllers/AssignController.php',
+    'App\\Http\\Controllers\\AssignEmpZonaController' => $baseDir . '/app/Http/Controllers/AssignEmpZonaController.php',
     'App\\Http\\Controllers\\AtraccionsController' => $baseDir . '/app/Http/Controllers/AtraccionsController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -25,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\ImageController' => $baseDir . '/app/Http/Controllers/ImageController.php',
     'App\\Http\\Controllers\\IncidenciesController' => $baseDir . '/app/Http/Controllers/IncidenciesController.php',
+    'App\\Http\\Controllers\\NoticiesController' => $baseDir . '/app/Http/Controllers/NoticiesController.php',
     'App\\Http\\Controllers\\ServeisController' => $baseDir . '/app/Http/Controllers/ServeisController.php',
     'App\\Http\\Controllers\\VentesController' => $baseDir . '/app/Http/Controllers/VentesController.php',
     'App\\Http\\Controllers\\ZonesController' => $baseDir . '/app/Http/Controllers/ZonesController.php',
@@ -109,6 +113,7 @@ return array(
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
     'Carbon\\Laravel\\ServiceProvider' => $vendorDir . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
+    'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -294,6 +299,7 @@ return array(
     'Egulias\\EmailValidator\\Warning\\QuotedString' => $vendorDir . '/egulias/email-validator/EmailValidator/Warning/QuotedString.php',
     'Egulias\\EmailValidator\\Warning\\TLD' => $vendorDir . '/egulias/email-validator/EmailValidator/Warning/TLD.php',
     'Egulias\\EmailValidator\\Warning\\Warning' => $vendorDir . '/egulias/email-validator/EmailValidator/Warning/Warning.php',
+    'Empleat_zona' => $baseDir . '/database/seeds/Empleat_zona.php',
     'EstatIncidenciesTableSeeder' => $baseDir . '/database/seeds/EstatIncidenciesTableSeeder.php',
     'Faker\\Calculator\\Iban' => $vendorDir . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
     'Faker\\Calculator\\Inn' => $vendorDir . '/fzaninotto/faker/src/Faker/Calculator/Inn.php',

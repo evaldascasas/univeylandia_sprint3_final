@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use \App\Incidencia;
 use \App\PrioritatIncidencia;
 use \App\User;
+
+use App\Notifications\IncidenceAssigned;
+
 use Auth;
 use Image;
 use PDF;
@@ -140,7 +143,7 @@ class IncidenciesController extends Controller
 
         $treballador_assignat = User::find($incidencia->id_usuari_assignat);
 
-        $treballadors = User::where('id_rol', 3)
+        $treballadors = User::where('id_rol', 5)
         ->whereNotNull('email_verified_at')
         ->get();
 
@@ -165,12 +168,17 @@ class IncidenciesController extends Controller
 
         $incidencia = Incidencia::findOrFail($id);
 
+        $user = User::find($request->get('assigned-employee'));
+
         $incidencia->titol = $request->get('title');
         $incidencia->descripcio = $request->get('description');
         $incidencia->id_prioritat = $request->get('priority');
         $incidencia->id_estat = 2;
         $incidencia->id_usuari_assignat = $request->get('assigned-employee');
         $incidencia->save();
+
+        //Enviar notificacio - guardar notificacio en la taula 'notifications'
+        $user->notify(new IncidenceAssigned($incidencia));
 
         return redirect('gestio/incidencies/assign')->with('success', 'Incidència assignada correctament');
     }

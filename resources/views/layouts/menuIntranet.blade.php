@@ -14,7 +14,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('empleats*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('empleats*') ? 'true' : 'false' }}" href="#submenu0">
               <span data-feather="users"></span>
-              Gestionar Empleats
+              Empleats
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -32,7 +32,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('clients*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('clients*') ? 'true' : 'false' }}" href="#submenu1">
               <span data-feather="users"></span>
-              Gestionar Clients
+              Clients
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -49,7 +49,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('atraccions*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('atraccions*') ? 'true' : 'false' }}" href="#submenu3">
               <span data-feather="trending-down"></span>
-              Gestionar Atraccions
+              Atraccions
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -61,12 +61,12 @@
               <a class="nav-link nav-interior {{ request()->routeIs('atraccions.index') ? 'active' : '' }}" href="{{URL::route('atraccions.index')}}"><span data-feather="file-text"></span>Gestionar Atraccions</a>
             </li>
           </ul>
-          
+
 
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('incidencies*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('incidencies*') ? 'true' : 'false' }}" href="#submenu5">
               <span data-feather="alert-triangle"></span>
-              Gestionar Incidències
+              Incidències
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -87,7 +87,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('serveis*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('serveis*') ? 'true' : 'false' }}" href="#submenu6">
               <span data-feather="truck"></span>
-              Gestionar Serveis
+              Serveis
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -105,7 +105,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('zones*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('zones*') ? 'true' : 'false' }}" href="#submenu7">
               <span data-feather="truck"></span>
-              Gestionar Zones
+              Zones
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -123,7 +123,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('productes*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('productes*') ? 'true' : 'false' }}" href="#submenu8">
               <span data-feather="truck"></span>
-              Gestionar Productes
+              Productes
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -137,25 +137,24 @@
             </li>
           </ul>
 
-
           <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('ventes*') ? 'active' : '' }}" href="{{  URL::route('ventes.index')  }}"><span data-feather="truck"></span> Gestionar Ventes</a>
+            <a class="nav-link {{ request()->routeIs('ventes*') ? 'active' : '' }}" href="{{  route('ventes.index')  }}"><span data-feather="truck"></span> Ventes</a>
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#submenu10">
+            <a class="nav-link {{ request()->routeIs('noticies*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="false" href="#submenu10">
               <span data-feather="alert-triangle"></span>
-              Gestionar Noticies
+              Notícies
               <span data-feather="chevron-right"></span>
             </a>
           </li>
-          <ul class="nav flex-column collapse" id="submenu10" data-parent="#sidebar">
+          <ul class="nav flex-column collapse {{ request()->routeIs('noticies*') ? 'show' : '' }}" id="submenu10" data-parent="#sidebar">
             <li class="nav-item">
-              <a class="nav-link nav-interior" href="#"><span data-feather="user-plus"></span>Crear Noticia</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('noticies.create*') ? 'active' : '' }}" href="{{ route('noticies.create') }}"><span data-feather="user-plus"></span>Crear Noticia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Gestionar Noticia</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('noticies.index') ? 'active' : '' }}" href="{{ route('noticies.index') }}"><span data-feather="file-text"></span>Gestionar Notícies</a>
             </li>
           </ul>
 
@@ -163,7 +162,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('imatges*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('imatges*') ? 'true' : 'false' }}" href="#submenu11">
               <span data-feather="alert-triangle"></span>
-              Gestionar Imatges
+              Imatges
               <span data-feather="chevron-right"></span>
             </a>
           </li>
@@ -174,6 +173,23 @@
             </li>
             <li class="nav-item">
               <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Veure Imatges</a>
+            </li>
+          </ul>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('AssignEmpZona*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('AssignEmpZona*') ? 'true' : 'false' }}" href="#submenu12">
+              <span data-feather="truck"></span>
+              Empleats Zones
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+
+          <ul class="nav flex-column collapse {{ request()->routeIs('AssignEmpZona*') ? 'show' : '' }}" id="submenu12" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('AssignEmpZona.create') ? 'active' : '' }}" href="{{  URL::route('AssignEmpZona.create')  }}"><span data-feather="plus-square"></span>Crear Assignació</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('AssignEmpZona.index') ? 'active' : '' }}" href="{{ URL::route('AssignEmpZona.index') }}"><span data-feather="file-text"></span>Gestionar Assignacions</a>
             </li>
           </ul>
 

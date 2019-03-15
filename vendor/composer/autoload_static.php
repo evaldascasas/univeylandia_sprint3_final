@@ -462,6 +462,7 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
     );
 
     public static $classMap = array (
+        'App\\AssignEmpZona' => __DIR__ . '/../..' . '/app/AssignEmpZona.php',
         'App\\Atraccion' => __DIR__ . '/../..' . '/app/Atraccion.php',
         'App\\Atributs_producte' => __DIR__ . '/../..' . '/app/Atributs_producte.php',
         'App\\Cistella' => __DIR__ . '/../..' . '/app/Cistella.php',
@@ -469,6 +470,8 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
         'App\\DadesEmpleat' => __DIR__ . '/../..' . '/app/DadesEmpleat.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Horari' => __DIR__ . '/../..' . '/app/Horari.php',
+        'App\\Http\\Controllers\\AssignController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssignController.php',
+        'App\\Http\\Controllers\\AssignEmpZonaController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssignEmpZonaController.php',
         'App\\Http\\Controllers\\AtraccionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/AtraccionsController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -481,6 +484,7 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
         'App\\Http\\Controllers\\IncidenciesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IncidenciesController.php',
+        'App\\Http\\Controllers\\NoticiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/NoticiesController.php',
         'App\\Http\\Controllers\\ServeisController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServeisController.php',
         'App\\Http\\Controllers\\VentesController' => __DIR__ . '/../..' . '/app/Http/Controllers/VentesController.php',
         'App\\Http\\Controllers\\ZonesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ZonesController.php',
@@ -565,6 +569,7 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'CategoriesSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriesSeeder.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -750,6 +755,7 @@ class ComposerStaticIniteebf4e4e1a793206d9c4848d704bcf77
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/Warning.php',
+        'Empleat_zona' => __DIR__ . '/../..' . '/database/seeds/Empleat_zona.php',
         'EstatIncidenciesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EstatIncidenciesTableSeeder.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Inn.php',

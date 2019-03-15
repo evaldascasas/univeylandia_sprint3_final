@@ -225,7 +225,7 @@
 
                                 <div class="col-sm-6">
                                     <input id="document-number" type="text" class="form-control{{ $errors->has('document-number') ? ' is-invalid' : '' }}"
-                                        name="document-number" value="{{ old('document-number') }}" required>
+                                        name="document-number" value="{{ old('document-number') }}" onblur="nif(this.value)" required>
 
                                     @if ($errors->has('document-number'))
                                     <span class="invalid-feedback" role="alert">
@@ -265,14 +265,14 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-sm-6 offset-sm-4">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success" onclick="regexDNI()">
                                         {{ __('Registrar') }}
                                     </button>
                                 </div>
                             </div>
 
                         </form>
-                        
+
                     </div>
 
                 </div>
@@ -282,3 +282,16 @@
 </body>
 
 </html>
+
+<script>
+  function nif(dni) {
+    numero = dni.substr(0,dni.length-1);
+    let = dni.substr(dni.length-1,1);
+    numero = numero % 23;
+    letra='TRWAGMYFPDXBNJZSQVHLCKET';
+    letra=letra.substring(numero,numero+1);
+    if (letra!=let)
+      alert('Dni erroneo');
+  }
+
+</script>
