@@ -5,7 +5,7 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<main role="main">
     <style>
       .uper {
         margin-top: 40px;
