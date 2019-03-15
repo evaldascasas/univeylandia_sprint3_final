@@ -201,12 +201,12 @@
               <span data-feather="chevron-right"></span>
             </a>
           </li>
-          <ul class="nav flex-column collapse {{ request()->routeIs('Promocions*') ? 'show' : '' }}" id="submenu13" data-parent="#sidebar">
+          <ul class="nav flex-column collapse" id="submenu13" data-parent="#sidebar">
             <li class="nav-item">
-              <a class="nav-link nav-interior {{ request()->routeIs('Promocions.create') ? 'active' : '' }}" href="{{  URL::route('promocions.create')  }}"><span data-feather="user-plus"></span>Crear Promoció</a>
+              <a class="nav-link nav-interior" href="#"><span data-feather="user-plus"></span>Crear Promoció</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-interior {{ request()->routeIs('Promocions.index') ? 'active' : '' }}" href="{{ URL::route('promocions.index') }}"><span data-feather="file-text"></span>Gestionar Promocions</a>
+              <a class="nav-link nav-interior" href="#"><span data-feather="file-text"></span>Gestionar Promocions</a>
             </li>
           </ul>
 
