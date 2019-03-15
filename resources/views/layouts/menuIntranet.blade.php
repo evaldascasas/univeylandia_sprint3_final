@@ -86,7 +86,7 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('GestioServeis*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('GestioServeis*') ? 'true' : 'false' }}" href="#submenu6">
               <span data-feather="truck"></span>
-              Gesrio de Serveis
+              Gestio de Serveis
               <span data-feather="chevron-right"></span>
             </a>
           </li>
