@@ -38,7 +38,7 @@ class PromocionsController extends Controller
      */
     public function create()
     {
-        return view('gestio.promocions.create');
+        return view('gestio/promocions/create');
     }
 
     /**
@@ -95,8 +95,7 @@ class PromocionsController extends Controller
     public function edit($id)
     {
         $promocio = promocions::find($id);
-        $categories = categories::all();
-        return view('gestio.promocions.edit', compact('promocio', 'categories'));
+        return view('gestio/promocions/edit', compact('promocio'));
 
     }
 
@@ -111,7 +110,6 @@ class PromocionsController extends Controller
     {
       $promocio = Promocions::find($id);
       $promocio->titol = $request->get('titol');
-      $promocio->categoria = $request->get('categoria');
       if ($request->has('image')) {
         $image_path = public_path().$promocio->path_img;
         if(File::exists($image_path)) {
