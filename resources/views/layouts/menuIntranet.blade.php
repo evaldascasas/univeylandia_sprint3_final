@@ -83,21 +83,37 @@
             </li>
           </ul>
 
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('GestioServeis*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('GestioServeis*') ? 'true' : 'false' }}" href="#submenu6">
+              <span data-feather="truck"></span>
+              Gesrio de Serveis
+              <span data-feather="chevron-right"></span>
+            </a>
+          </li>
+
+          <ul class="nav flex-column collapse {{ request()->routeIs('GestioServeis*') ? 'show' : '' }}" id="submenu6" data-parent="#sidebar">
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('GestioServeis.create') ? 'active' : '' }}" href="{{URL::route('GestioServeis.create')}}"><span data-feather="plus-square"></span>Crear Servei</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-interior {{ request()->routeIs('GestioServeis.index') ? 'active' : '' }}" href="{{URL::route('GestioServeis.index')}}"><span data-feather="file-text"></span>Gestionar Serveis</a>
+            </li>
+          </ul>
 
           <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('serveis*') ? 'active' : '' }}" data-toggle="collapse" aria-expanded="{{ request()->routeIs('serveis*') ? 'true' : 'false' }}" href="#submenu6">
               <span data-feather="truck"></span>
-              Serveis
+              Assignacions Empleat-Servei-Zona
               <span data-feather="chevron-right"></span>
             </a>
           </li>
 
           <ul class="nav flex-column collapse {{ request()->routeIs('serveis*') ? 'show' : '' }}" id="submenu6" data-parent="#sidebar">
             <li class="nav-item">
-              <a class="nav-link nav-interior {{ request()->routeIs('serveis.create') ? 'active' : '' }}" href="{{URL::route('serveis.create')}}"><span data-feather="plus-square"></span>Crear Servei</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('serveis.create') ? 'active' : '' }}" href="{{URL::route('serveis.create')}}"><span data-feather="plus-square"></span>Crear Assignació</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-interior {{ request()->routeIs('serveis.index') ? 'active' : '' }}" href="{{URL::route('serveis.index')}}"><span data-feather="file-text"></span>Gestionar Serveis</a>
+              <a class="nav-link nav-interior {{ request()->routeIs('serveis.index') ? 'active' : '' }}" href="{{URL::route('serveis.index')}}"><span data-feather="file-text"></span>Gestionar Assignacions</a>
             </li>
           </ul>
 
