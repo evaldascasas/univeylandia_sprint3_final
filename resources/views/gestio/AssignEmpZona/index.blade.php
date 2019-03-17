@@ -5,12 +5,12 @@
 @section("menuIntranet")
 @endsection
 @section("content")
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mb-3">
     <style>
         .uper {
             margin-top: 40px;
         }
     </style>
+    
     @if(session()->get('success'))
     <div class="uper">
         <div class="alert alert-success">

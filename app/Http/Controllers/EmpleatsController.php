@@ -81,7 +81,31 @@ class EmpleatsController extends Controller
     {
         //$randomPass = str_random(8);
 
-        $dadesEmpleat = new DadesEmpleat([
+        $request->validate([
+            'nom' => ['required', 'string', 'max:255'],
+            'cognom1' => ['required', 'string', 'max:255'],
+            'cognom2' => ['string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'data_naixement' => ['required', 'date'],
+            'adreca' => ['required', 'string'],
+            'ciutat' => ['required', 'string'],
+            'provincia' => ['required', 'string'],
+            'codi_postal' => ['required', 'string'],
+            'tipus_document' => ['required', 'string'],
+            'numero_document' => ['required', 'string'],
+            'sexe' => ['required', 'string'],
+            'id_rol' => ['required', 'integer'],
+            'codi_seg_social' => ['required', 'string', 'unique:dades_empleats'],
+            'num_nomina' => ['required', 'string', 'unique:dades_empleats'],
+            'IBAN' => ['required', 'string', 'unique:dades_empleats'],
+            'especialitat' => ['required', 'string'],
+            'carrec' => ['required', 'string'],
+            'data_inici_contracte' => ['required', 'date','before:data_fi_contracte'],
+            'data_fi_contracte' => ['required', 'date', 'after:data_inici_contracte'],
+            'id_horari' => ['required', 'integer'],
+        ]);
+
+        $dades = new DadesEmpleat([
             'codi_seg_social' => $request->get('codi_seg_social'),
             'num_nomina' => $request->get('num_nomina'),
             'IBAN' => $request->get('IBAN'),
@@ -92,8 +116,6 @@ class EmpleatsController extends Controller
             'id_horari' => $request->get('id_horari')
         ]);
        
-        $dadesEmpleat->save();
-
         $usuari = new User([
             'nom' => $request->get('nom'),
             'cognom1' => $request->get('cognom1'),
@@ -111,11 +133,18 @@ class EmpleatsController extends Controller
             'sexe' => $request->get('sexe'),
             'telefon' => $request->get('telefon'),
             'id_rol' => $request->get('id_rol'),
-            'id_dades_empleat' => ($dadesEmpleat->id),
+            'id_dades_empleat' => ($dades->id),
             'actiu' => 1
         ]);
-        
-        $usuari->save();
+
+        //use a transaction so IF the query fails it does not insert nor update the resources
+        DB::transaction(function () use ($dades, $usuari) {
+
+            $dades->save();
+
+            $usuari->save();
+
+        });
 
         return redirect('/gestio/empleats')->with('success', 'Empleat creat correctament');
     }
@@ -149,8 +178,10 @@ class EmpleatsController extends Controller
     {
         $user = User::findOrFail($id);
         $dades = DadesEmpleat::find($user->id_dades_empleat);
+        $horaris = Horari::all();
+        $rols = Rol::where('id','!=',1)->orderBy('id','DESC')->get();
 
-        return view('gestio/empleats/edit', compact(['user','dades']));
+        return view('gestio/empleats/edit', compact(['user','dades','horaris','rols']));
     }
 
     /**
@@ -162,7 +193,32 @@ class EmpleatsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nom' => ['required', 'string', 'max:255'],
+            'cognom1' => ['required', 'string', 'max:255'],
+            'cognom2' => ['string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'data_naixement' => ['required', 'date'],
+            'adreca' => ['required', 'string'],
+            'ciutat' => ['required', 'string'],
+            'provincia' => ['required', 'string'],
+            'codi_postal' => ['required', 'string'],
+            'tipus_document' => ['required', 'string'],
+            'numero_document' => ['required', 'string'],
+            'sexe' => ['required', 'string'],
+            'id_rol' => ['required', 'integer'],
+            'codi_seg_social' => ['required', 'string', 'unique:dades_empleats'],
+            'num_nomina' => ['required', 'string', 'unique:dades_empleats'],
+            'IBAN' => ['required', 'string', 'unique:dades_empleats'],
+            'especialitat' => ['required', 'string'],
+            'carrec' => ['required', 'string'],
+            'data_inici_contracte' => ['required', 'date','before:data_fi_contracte'],
+            'data_fi_contracte' => ['required', 'date', 'after:data_inici_contracte'],
+            'id_horari' => ['required', 'integer'],
+        ]);
+
         $user = User::findOrFail($id);
+
         $user->nom = $request->get('nom');
         $user->cognom1 = $request->get('cognom1');
         $user->cognom2 = $request->get('cognom2');
@@ -178,9 +234,8 @@ class EmpleatsController extends Controller
         $user->telefon = $request->get('telefon');
         $user->id_rol = $request->get('id_rol');
 
-        $user->save();
-
         $dades = DadesEmpleat::find($user->id_dades_empleat);
+
         $dades->codi_seg_social = $request->get('codi_seg_social');
         $dades->num_nomina = $request->get('num_nomina');
         $dades->IBAN = $request->get('IBAN');
@@ -189,13 +244,17 @@ class EmpleatsController extends Controller
         $dades->data_inici_contracte = $request->get('data_inici_contracte');
         $dades->data_fi_contracte = $request->get('data_fi_contracte');
         $dades->id_horari = $request->get('id_horari');
-        
-        $dades->save();
 
-        $user->update($request->all());
-        $dades->update($request->all());
+        //use a transaction so IF the query fails it does not insert nor update the resources
+        DB::transaction(function () use ($dades, $usuari) {
 
-        return redirect('gestio/empleats/');
+            $dades->save();
+
+            $usuari->save();
+
+        });
+
+        return redirect('/gestio/empleats')->with('success', 'Empleat modificat correctament');
     }
 
     /**
@@ -211,6 +270,6 @@ class EmpleatsController extends Controller
 
         $user->save();
 
-        return redirect('gestio/empleats/');
+        return redirect('/gestio/empleats')->with('success', 'Empleat desactivat correctament');
     }
 }

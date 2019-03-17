@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+
 use \App\User;
 use \App\Zona;
 use \App\AssignEmpZona;
@@ -18,18 +18,7 @@ class AssignEmpZonaController extends Controller
    */
   public function index()
   {
-    /*$assignacions = DB::table('zones')->where('id_estat',2)
-    ->join ('serveis_zones','serveis_zones.id_zona', '=', 'zones.id')
-    ->join('users', 'serveis_zones.id_empleat', '=', 'users.id')
-    ->join('serveis', 'serveis_zones.id_servei', '=', 'serveis.id')
-    ->get ([
-      'serveis_zones.id as id',
-      'zones.nom as nom_zona',
-      'serveis.nom as nom_servei',
-      'users.nom as nom_empleat'
-    ]);*/
-    $assignacions = DB::table('empleat_zona')
-    ->join ('zones','empleat_zona.id_zona', '=', 'zones.id')
+    $assignacions = AssignEmpZona::join ('zones','empleat_zona.id_zona', '=', 'zones.id')
     ->join('users', 'empleat_zona.id_empleat', '=', 'users.id')
     ->get ([
       'empleat_zona.id as id',
@@ -49,13 +38,13 @@ class AssignEmpZonaController extends Controller
    */
   public function create()
   {
-      $treballadors = User::where('id_rol','!==',1)
-      ->where('id_rol','!==',2)
+      $treballadors = User::where('id_rol',5)
       ->whereNotNull('email_verified_at')
       ->whereNotNull('id_dades_empleat')
       ->get();
 
       $zones = Zona::all();
+
       return view('gestio/AssignEmpZona/create', compact('zones','treballadors'));
   }
 
@@ -67,7 +56,6 @@ class AssignEmpZonaController extends Controller
    */
   public function store(Request $request)
   {
-
     $request->validate([
         'seleccio_zona' => 'required',
         'data_inici_assign' => 'required',
@@ -106,8 +94,7 @@ class AssignEmpZonaController extends Controller
    */
   public function edit($id)
   {
-    $treballadors = User::where('id_rol','!==',1)
-    ->where('id_rol','!==',2)
+    $treballadors = User::where('id_rol',5)
     ->whereNotNull('email_verified_at')
     ->whereNotNull('id_dades_empleat')
     ->get();
