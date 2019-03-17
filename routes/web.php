@@ -25,6 +25,8 @@
  Route::get('/faq',"HomeController@faq")->name('faq');
  Route::get('/multimedia',"HomeController@multimedia")->name('multimedia');
  Route::patch('/notification-read/{id}', 'NotificationsController@destroy')->name('markasread')->middleware(['auth','verified']);
+ Route::get('/promocions',"HomeController@promocions")->name('promocions');
+ Route::get('/promocions/n',"HomeController@promocio")->name('promocio');
 
  /* RUTES GRUP 1 */
  Auth::routes(['verify' => true]);
