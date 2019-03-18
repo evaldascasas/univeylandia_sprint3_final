@@ -23,7 +23,7 @@
             @endif
 
             @elseif(Auth::user()->id_rol !== 1 && Auth::user()->id_rol !== 2)
-            
+
             <li class="nav-item dropdown">
                 @if(Auth::user()->unreadNotifications->count() !== 0)
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -42,7 +42,7 @@
                         </form>
                     </li>
                     @endforeach
-                    
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Mostrar notificacions</a>
                 </ul>
@@ -57,7 +57,7 @@
                 </ul>
                 @endif
             </li>
-            
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nom }} {{ Auth::user()->cognom1 }}</a>
@@ -96,7 +96,7 @@
                         </form>
                     </li>
                     @endforeach
-                    
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Mostrar notificacions</a>
                 </ul>
@@ -132,7 +132,7 @@
                     </li>
                 </ul>
             </li>
-            
+
             @elseif(Auth::user()->id_rol == 1)
             <li class="nav-item dropdown">
                 @if(Auth::user()->unreadNotifications->count() !== 0)
@@ -152,7 +152,7 @@
                         </form>
                     </li>
                     @endforeach
-                    
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Mostrar notificacions</a>
                 </ul>
@@ -167,7 +167,7 @@
                 </ul>
                 @endif
             </li>
-            
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nom }} {{ Auth::user()->cognom1 }}</a>
@@ -189,8 +189,8 @@
                 </ul>
             </li>
             @endguest
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('cistella') }}">
+            <li>
+                <a class="nav-link" style="color:black;" href="{{ route('cistella') }}">
                     <i data-feather="shopping-cart"></i>
                 </a>
             </li>
