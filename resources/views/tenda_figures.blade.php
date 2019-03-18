@@ -59,7 +59,7 @@
 
 <div style="display: table; margin: 0 auto; margin-top: 50px; width: 80%;">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <button id="imatges_button">Mostrar/amagar imatges</button>
+  <button id="imatges_button" class="btn btn-outline-secondary">Mostrar/amagar imatges</button>
   <script src="/js/test.js"> </script>
   <div id="flip" style="  padding: 5px; text-align: center; background-color: #212529; border: solid 1px #c3c3c3; color:white; font-weight: bold;">Mostrar o amagar la cistella</div>
   <div id="taula_generada" style="margin-bottom: 50px;">
