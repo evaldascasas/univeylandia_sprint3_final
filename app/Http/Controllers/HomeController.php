@@ -23,6 +23,7 @@ use \App\noticies;
 use \App\categories;
 use \App\Votacio_user_atraccio;
 use \App\Atraccion;
+use \App\Promocions;
 
 class HomeController extends Controller
 {
@@ -51,13 +52,15 @@ class HomeController extends Controller
         ->orderBy('id', 'DESC')
         ->paginate(2);
         return view('index', compact('noticies'));
+
+        $promocions = DB::table('promocions')
+          ->join('users', 'users.id', '=', 'noticies.id_usuari')
+          ->select('noticies.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img')
+          ->orderBy('id', 'DESC')
+          ->paginate(2);
+          return view('index', compact('promocions'));
     }
-  
-    public function promocions()
-    {
-      return view("promocions");
-    }
-    
+
     public function atraccions(){
       $atraccionetes = DB::table('tipus_atraccions')
       ->join('atraccions', 'atraccions.tipus_atraccio', '=', 'tipus_atraccions.id')
@@ -79,24 +82,24 @@ class HomeController extends Controller
 
       return view("atraccions", compact('atraccionetes'));
     }
-  
+
     public function entrades()
     {
       $tipus_producte = Tipus_producte::all();
 
       return view("entrades", compact('tipus_producte'));
     }
-  
+
     public function login()
     {
       return view("login");
     }
-  
+
     public function contacte()
     {
       return view("contacte");
     }
-  
+
     public function gestio()
     {
       return view("gestio/index");
@@ -157,7 +160,7 @@ class HomeController extends Controller
             'id_estat' => 1,
             'id_usuari_reportador' => $user->id,
         ]);
-        
+
         $incidencia->save();
 
         return redirect('incidencia')->with('success', 'Incidència reportada correctament');
@@ -303,19 +306,19 @@ class HomeController extends Controller
 
       return redirect('/cistella')->with('success', 'Producte eliminat correctament');
     }
-    
+
     public function tendes_inter(){
 
       return view("/tendes");
 
     }
-    
+
     public function tenda_figures(){
 
       return view("/tenda_figures");
 
     }
-    
+
     public function noticia(Request $request)
     {
         $valid = 0;
@@ -330,7 +333,7 @@ class HomeController extends Controller
         $categoria = categories::find($noticia->categoria);
         return view("/noticia", compact('noticia', 'categoria', 'valid'));
     }
-    
+
     public function noticies(Request $request)
     {
       $noticies = DB::table('noticies')
@@ -352,7 +355,32 @@ class HomeController extends Controller
         ->paginate(8);
       return view('noticies', compact('noticies'));
     }
-    
+
+    public function promocio (Request $request)
+    {
+        $valid = 0;
+        if (Auth::check()) {
+          $user = Auth::user();
+          if ($user->id_rol == 2) {
+            $valid = 1;
+          }
+        }
+
+        $promocio = promocions::find($request->get('id'));
+        return view("/promocio", compact('promocio', 'valid'));
+    }
+
+    public function promocions(Request $request)
+    {
+      $promocions = DB::table('promocions')
+        ->join('users', 'users.id', '=', 'promocions.id_usuari')
+        ->select('promocions.id', 'titol', 'descripcio', 'users.nom', 'users.cognom1', 'users.cognom2', 'users.numero_document', 'path_img')
+        ->orderBy('id', 'DESC')
+        ->paginate(8);
+
+      return view('promocions', compact('promocions'));
+    }
+
     public function votacions()
     {
       $atraccions = json_encode(DB::table('atraccions')

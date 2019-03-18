@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ZonesSeeder::class,
             Empleat_zona::class,
             CategoriesSeeder::class,
+            PromocionsSeeder::class,
         ]);
     }
 }

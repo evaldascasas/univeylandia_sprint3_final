@@ -5,12 +5,12 @@
 @section("menu2")
 @endsection
 @section("content")
-<!-- PROMOCIONS -->
+<!-- Promocions -->
 <div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-12">
             <a href="/promocions" style="text-decoration: none;color:black;">
-                <h1 class="font-weight-bold text-center text-uppercase">Promocions</h1>
+                <h1 class="font-weight-bold text-center text-uppercase">promocions</h1>
             </a>
         </div>
     </div>
@@ -19,11 +19,6 @@
         <div class="col-sm-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
-                    <form method="get">
-                        <input type="hidden" name="catId" value="{{$promocio->catId}}">
-                        <button class="d-inline-block mb-2 text-success" type="submit"
-                            style="background: none;border: none;">{{$promocio->categoria}}</button>
-                    </form>
                     <h3 class="mb-0">
                         <a class="text-dark">{{$promocio->titol}}</a>
                     </h3>
@@ -35,7 +30,7 @@
                     </form>
                 </div>
                 <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"
-                    alt="imatge de la promoció" style="width: 200px;height: 300px;" src="{{$promocio->path_img}}">
+                    alt="imatge de la promocio" style="width: 200px;height: 300px;" src="{{$promocio->path_img}}">
             </div>
         </div>
         @empty
